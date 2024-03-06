@@ -2,6 +2,8 @@
    
    import Chart from '$lib/chart.svelte';
    import Battery_chart from '$lib/battery_chart.svelte';
+   import Timer from "$lib/timer.svelte";
+   
 
 
    import { data } from '../lib/data.js'
@@ -119,6 +121,9 @@
    
 </script>
 
+<div class="h-20 fixed top-0 right-0">
+    <Timer/>
+</div>
 
 
 <dialog id="modal" class="backdrop:bg-gray-800/50 p-4 relative bg-white rounded-lg shadow dark:bg-gray-700 ">
@@ -176,7 +181,7 @@
 
 
 
-<button class="fixed top-0 right-0 p-2 sm:p-4 z-50 bg-black rounded-bl-lg shadow-md text-white font-bold tracking-wide" onclick="modal.showModal()">RULES</button>
+<button class="fixed top-[72px] right-0 p-2 sm:p-4 z-50 bg-black rounded-bl-lg shadow-md text-white font-bold tracking-wide" onclick="modal.showModal()">RULES</button>
 
 
 <main class="flex flex-col">
@@ -188,7 +193,7 @@
         
     </div>
 
-    <div class="w-full sm:h-72 flex flex-col sm:flex-row  gap-3 py-2">
+    <div class="w-full sm:h-64 flex flex-col sm:flex-row  gap-3 py-2">
         <div class=" sm:px-4 ">
         <h2 class="text-2xl mb-2 sm:mb-4 font-bold">Current Estimated Revenue</h2>
         <div class="flex flex-row w-full justify-between items-center">
@@ -259,7 +264,7 @@
         {#each ptus as ptu, index}
 
             <div class=" border-gray-300 rounded-md text-center flex flex-col text-xs gap-1 ">
-                <div class="mb-2">
+                <div class="mb-2 font-medium tracking-tight ">
                     {#if ptu < 10}
                         0{ptu}:00
                     {:else}
