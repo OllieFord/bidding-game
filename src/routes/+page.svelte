@@ -92,7 +92,7 @@
                 estimatedRevenue.lower[index]  = -(data[index].fcr_n_price_lower) * fineMultiplication
                 estimatedRevenue.value[index]  = ((estimatedRevenue.upper[index] + estimatedRevenue.lower[index]) / 2)
                 return currentChargeState
-            } else if (currentChargeState >= 50) {
+            } else if (currentChargeState > 50) {
                 estimatedRevenue.upper[index]  = -(data[index].fcr_n_price_upper) * fineMultiplication
                 estimatedRevenue.lower[index]  = -(data[index].fcr_n_price_lower) * fineMultiplication
                 estimatedRevenue.value[index]  = ((estimatedRevenue.upper[index] + estimatedRevenue.lower[index]) / 2)
@@ -113,7 +113,7 @@
     function updateSelectedValue(index, value) {
         selectedValues[index] = value;
         for (let i = index; i < chargeState.length; i++) {
-            chargeState[i] = calculateChargeState(index, selectedValues[index])
+            chargeState[i] = calculateChargeState(i, selectedValues[i])
             }
     }
 
@@ -184,33 +184,54 @@
 <button class="fixed top-[72px] right-0 p-2 sm:p-4 z-50 bg-black rounded-bl-lg shadow-md text-white font-bold tracking-wide" onclick="modal.showModal()">RULES</button>
 
 
-<main class="flex flex-col">
+<main class="w-full">
     <h1 class="text-4xl pb-6 ">Welcome to the Energy bidding Game!</h1>
     
 
-    <div class="w-full h-80 ">
+    <div class="w-full h-80 flex sm:flex-row  gap-3 py-2 ">
+        <div class=" sm:px-4 grid-span-1  ">
+            <h2 class="text-xl mb-2 sm:mb-4 font-bold">Current Estimated Revenue</h2>
+            <div class="flex flex-row w-full justify-between items-center">
+                <div class="text-xs from-neutral-600">Upper Estimate </div>
+                <div class="sm:p-2 font-bold text-lg">{sum(estimatedRevenue.upper).toFixed(2)}</div>
+            </div>
+            <div class="flex flex-row w-full justify-between items-center">
+                <div class="text-xs from-neutral-600">Average Estimate </div>
+                <div class="sm:p-2 font-bold text-lg">{sum(estimatedRevenue.value).toFixed(2)}</div>
+            </div>
+            <div class="flex flex-row w-full justify-between items-center">
+                <div class="text-xs from-neutral-600">Lower Estimate </div>
+                <div class="sm:p-2 font-bold text-lg">{sum(estimatedRevenue.lower).toFixed(2)}</div>
+            </div>
+        </div>
         <Chart />
         
     </div>
 
+
     <div class="w-full sm:h-64 flex flex-col sm:flex-row  gap-3 py-2">
-        <div class=" sm:px-4 ">
-        <h2 class="text-2xl mb-2 sm:mb-4 font-bold">Current Estimated Revenue</h2>
-        <div class="flex flex-row w-full justify-between items-center">
-            <div class="text-xs from-neutral-600">Upper Estimate </div>
-            <div class="sm:p-2 font-bold text-lg">{sum(estimatedRevenue.upper).toFixed(2)}</div>
-        </div>
-        <div class="flex flex-row w-full justify-between items-center">
-            <div class="text-xs from-neutral-600">Average Estimate </div>
-            <div class="sm:p-2 font-bold text-lg">{sum(estimatedRevenue.value).toFixed(2)}</div>
-        </div>
-        <div class="flex flex-row w-full justify-between items-center">
-            <div class="text-xs from-neutral-600">Lower Estimate </div>
-            <div class="sm:p-2 font-bold text-lg">{sum(estimatedRevenue.lower).toFixed(2)}</div>
-        </div>
+        <div class=" sm:px-4 grid-span-1  ">
+            <h2 class="text-xl mb-2 sm:mb-4 font-bold">Current Estimated Revenue</h2>
+            <div class="flex flex-row w-full justify-between items-center">
+                <div class="text-xs from-neutral-600">Upper Estimate </div>
+                <div class="sm:p-2 font-bold text-lg">{sum(estimatedRevenue.upper).toFixed(2)}</div>
+            </div>
+            <div class="flex flex-row w-full justify-between items-center">
+                <div class="text-xs from-neutral-600">Average Estimate </div>
+                <div class="sm:p-2 font-bold text-lg">{sum(estimatedRevenue.value).toFixed(2)}</div>
+            </div>
+            <div class="flex flex-row w-full justify-between items-center">
+                <div class="text-xs from-neutral-600">Lower Estimate </div>
+                <div class="sm:p-2 font-bold text-lg">{sum(estimatedRevenue.lower).toFixed(2)}</div>
+            </div>
         </div>
         
-         <Battery_chart {chargeState}></Battery_chart>
+        
+            <Battery_chart {chargeState}></Battery_chart>
+            <!-- <div id="battery-chart" style="width: 100%; height:100%;"></div> -->
+        
+        
+         
     </div>
 
 <!-- 
@@ -238,12 +259,13 @@
     
 
 
-    <div class="flex flex-row justify-evenly w-full pb-4 mb-16 ">
-        <div class=" rounded-md text-center text-sm font-bold flex flex-col gap-1 justify-evenly ">
+    <!-- <div class="flex flex-row justify-evenly w-full pb-4 mb-16 grid grid-flow-row "> -->
+    <div class=" grid grid-flow-col grid-cols-5"> 
+        <div class=" rounded-md sm:px-4 text-sm font-bold flex flex-col gap-1 justify-evenly col-span-1 ">
                 <div class="mb-2 uppercase tracking-tight ">
                    Bidding Controls
                 </div>
-                <div class="flex-grow flex flex-col text-right items-center">
+                <div class="flex-grow flex flex-col ">
                 
                     <div class="flex flex-grow items-center ">
                         No Bid
@@ -260,6 +282,8 @@
                     </div>
                 
         </div>
+
+        <div class="flex flex-row flex-grow space-x-2 col-span-4">
 
         {#each ptus as ptu, index}
 
@@ -307,6 +331,7 @@
                 </fieldset>
             </div>
         {/each}
+        </div>
     </div>
     
 
