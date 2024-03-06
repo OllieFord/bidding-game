@@ -34,8 +34,8 @@
     }
 </script>
 
-<section class="app p-4 rounded-md overflow-hidden">
-	<svg class="rounded-bl-lg" viewBox="0 0 10 10" style="background: hsl({120 * (1-$progress)}deg, 50%, {100 - 50 * $progress}%)" preserveAspectRatio="none">
+<section class="app p-4 rounded-md overflow-hidden ">
+	<svg class="rounded-bl-lg shadow-md" viewBox="0 0 10 10" style="background: hsl({120 * (1-$progress)}deg, 50%, {100 - 50 * $progress}%)" preserveAspectRatio="none">
 		<rect
 			y={10 * $progress}
 			width=10

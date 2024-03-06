@@ -140,7 +140,7 @@
 
 </script>
 
-<div class="h-20 fixed top-0 right-0">
+<div class="h-20 fixed top-0 right-0 ">
     <Timer/>
 </div>
 
