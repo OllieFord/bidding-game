@@ -36,8 +36,17 @@ let option = {
     type: 'category',
     boundaryGap: false,
     data: data.map(function (item) {
-          return item.utc_timestamp;
-        })
+          return item.timestamp;
+        }),
+    axisLabel: {
+          formatter: function (value, idx) {
+            var date = new Date(value);
+            return [date.getHours() + ":00"].join('-');
+          }, 
+          "interval": 0,
+          "rotate": 45
+        },
+        
   },
   
   yAxis: {

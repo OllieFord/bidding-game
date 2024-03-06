@@ -6,18 +6,12 @@
     import { data } from './data.js'
 
 
-
-    var base = -data.reduce(function (min, val) {
-        return Math.floor(Math.min(min, val.lower));
-    }, Infinity);
-
-
     export let option = {
     title: {
         text: 'Market Price Forecasts'
     },
     legend: {
-    data: ['FCRD Price']
+    data: ['Spot Price', 'FCR-N']
     },
     tooltip: {
         trigger: 'axis',
@@ -34,28 +28,20 @@
             color: '#222'
           }
         },
-        // formatter: function (params) {
-        //   return (
-        //     params[2].name +
-        //     '<br />' +
-        //     ((params[2].value - base) * 100).toFixed(1) +
-        //     '%'
-        //   );
-        // }
       },
     xAxis: {
         type: 'category',
         axisLine: { onZero: true },
         data: data.map(function (item) {
-          return item.utc_timestamp;
+          return item.timestamp;
         }),
         axisLabel: {
           formatter: function (value, idx) {
             var date = new Date(value);
-            return idx === 0
-              ? value
-              : [date.getMonth() + 1, date.getDate(), date.getHours() + ":00"].join('-');
-          }
+            return [date.getHours() + ":00"].join('-');
+          }, 
+          "interval": 0,
+          "rotate": 45
         },
         boundaryGap: false
       },
@@ -67,40 +53,48 @@
       },
     series: [
         {
-          name: 'Lower Bound',
+          name: 'FCR-N',
           type: 'line',
           smooth: true,
           data: data.map(function (item) {
-            return item.lower;
+            return item.fcr_n_price_upper;
           }),
+          itemStyle: {
+            color: '#fb923c'
+          },
+          
           lineStyle: {
-            opacity: 0
+            opacity: 0,
           },
           stack: 'confidence-band',
           symbol: 'none'
         },
         {
-          name: 'Upper Bound',
+          name: 'FCR-N',
           type: 'line',
           smooth: true,
           data: data.map(function (item) {
-            return item.upper;
+            return item.fcr_n_price_lower;
           }),
+          itemStyle: {
+            color: '#fb923c'
+          },
           lineStyle: {
-            opacity: 0
+            opacity: 0,
+            
           },
           areaStyle: {
-            color: '#ccc'
+            color: '#fb923c'
           },
           stack: 'confidence-band',
           symbol: 'none'
         },
         {
-            name: 'FCRD Price',
+            name: 'Spot Price',
           type: 'line',
           smooth: true,
           data: data.map(function (item) {
-            return item.value;
+            return item.spot_price;
           }),
           markPoint: {
         data: [

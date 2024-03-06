@@ -1,146 +1,170 @@
 
 
 export const data = [{
-    'utc_timestamp': '2024-01-01 00:00:00',
-    'value': 1.9199999570846558,
-    'lower': 1.5360000133514404,
-    'upper': 2.303999900817871
+    'timestamp': '2024-03-22 00:00:00',
+    'fcr_n_price': 77.77,
+    'fcr_n_price_upper': 89.77,
+    'fcr_n_price_lower': 73.77,
+    'spot_price': 35.28
 },
 {
-    'utc_timestamp': '2024-01-01 01:00:00',
-    'value': 1.0,
-    'lower': 0.800000011920929,
-    'upper': 1.2000000476837158
+    'timestamp': '2024-03-22 01:00:00',
+    'fcr_n_price': 68.78,
+    'fcr_n_price_upper': 69.78,
+    'fcr_n_price_lower': 64.78,
+    'spot_price': 85.2
 },
 {
-    'utc_timestamp': '2024-01-01 02:00:00',
-    'value': 1.0,
-    'lower': 0.800000011920929,
-    'upper': 1.2000000476837158
+    'timestamp': '2024-03-22 02:00:00',
+    'fcr_n_price': 20.16,
+    'fcr_n_price_upper': 42.16,
+    'fcr_n_price_lower': 16.16,
+    'spot_price': 92.75
 },
 {
-    'utc_timestamp': '2024-01-01 03:00:00',
-    'value': 1.75,
-    'lower': 1.399999976158142,
-    'upper': 2.0999999046325684
+    'timestamp': '2024-03-22 03:00:00',
+    'fcr_n_price': 36.82,
+    'fcr_n_price_upper': 37.32,
+    'fcr_n_price_lower': 17.82,
+    'spot_price': 55.98
 },
 {
-    'utc_timestamp': '2024-01-01 04:00:00',
-    'value': 2.0999999046325684,
-    'lower': 1.6799999475479126,
-    'upper': 2.5199999809265137
+    'timestamp': '2024-03-22 04:00:00',
+    'fcr_n_price': 16.57,
+    'fcr_n_price_upper': 20.57,
+    'fcr_n_price_lower': 11.57,
+    'spot_price': 38.17
 },
 {
-    'utc_timestamp': '2024-01-01 05:00:00',
-    'value': 1.0,
-    'lower': 0.800000011920929,
-    'upper': 1.2000000476837158
+    'timestamp': '2024-03-22 05:00:00',
+    'fcr_n_price': 12.86,
+    'fcr_n_price_upper': 15.86,
+    'fcr_n_price_lower': 6.86,
+    'spot_price': 56.58
 },
 {
-    'utc_timestamp': '2024-01-01 06:00:00',
-    'value': 2.0,
-    'lower': 1.600000023841858,
-    'upper': 2.4000000953674316
+    'timestamp': '2024-03-22 06:00:00',
+    'fcr_n_price': 10.78,
+    'fcr_n_price_upper': 14.78,
+    'fcr_n_price_lower': 7.78,
+    'spot_price': 170.47
 },
 {
-    'utc_timestamp': '2024-01-01 07:00:00',
-    'value': 3.2899999618530273,
-    'lower': 2.631999969482422,
-    'upper': 3.947999954223633
+    'timestamp': '2024-03-22 07:00:00',
+    'fcr_n_price': 31.53,
+    'fcr_n_price_upper': 35.53,
+    'fcr_n_price_lower': 27.53,
+    'spot_price': 205.72
 },
 {
-    'utc_timestamp': '2024-01-01 08:00:00',
-    'value': 6.0,
-    'lower': 4.800000190734863,
-    'upper': 7.199999809265137
+    'timestamp': '2024-03-22 08:00:00',
+    'fcr_n_price': 32.84,
+    'fcr_n_price_upper': 38.84,
+    'fcr_n_price_lower': 25.84,
+    'spot_price': 195.25
 },
 {
-    'utc_timestamp': '2024-01-01 09:00:00',
-    'value': 6.0,
-    'lower': 4.800000190734863,
-    'upper': 7.199999809265137
+    'timestamp': '2024-03-22 09:00:00',
+    'fcr_n_price': 48.12,
+    'fcr_n_price_upper': 63.12,
+    'fcr_n_price_lower': 45.12,
+    'spot_price': 230.9
 },
 {
-    'utc_timestamp': '2024-01-01 10:00:00',
-    'value': 6.0,
-    'lower': 4.800000190734863,
-    'upper': 7.199999809265137
+    'timestamp': '2024-03-22 10:00:00',
+    'fcr_n_price': 48.12,
+    'fcr_n_price_upper': 55.12,
+    'fcr_n_price_lower': 29.12,
+    'spot_price': 160.41
 },
 {
-    'utc_timestamp': '2024-01-01 11:00:00',
-    'value': 1.3300000429153442,
-    'lower': 1.0640000104904175,
-    'upper': 1.596000075340271
+    'timestamp': '2024-03-22 11:00:00',
+    'fcr_n_price': 23.45,
+    'fcr_n_price_upper': 35.45,
+    'fcr_n_price_lower': 16.45,
+    'spot_price': 140.46
 },
 {
-    'utc_timestamp': '2024-01-01 12:00:00',
-    'value': 0.0,
-    'lower': 0.0,
-    'upper': 0.0
+    'timestamp': '2024-03-22 12:00:00',
+    'fcr_n_price': 23.55,
+    'fcr_n_price_upper': 31.55,
+    'fcr_n_price_lower': 8.55,
+    'spot_price': 94.07
 },
 {
-    'utc_timestamp': '2024-01-01 13:00:00',
-    'value': 6.0,
-    'lower': 4.800000190734863,
-    'upper': 7.199999809265137
+    'timestamp': '2024-03-22 13:00:00',
+    'fcr_n_price': 10.16,
+    'fcr_n_price_upper': 11.16,
+    'fcr_n_price_lower': 5.16,
+    'spot_price': 99.93
 },
 {
-    'utc_timestamp': '2024-01-01 14:00:00',
-    'value': 8.0,
-    'lower': 6.400000095367432,
-    'upper': 9.600000381469727
+    'timestamp': '2024-03-22 14:00:00',
+    'fcr_n_price': 7.54,
+    'fcr_n_price_upper': 9.54,
+    'fcr_n_price_lower': 5.54,
+    'spot_price': 92.55
 },
 {
-    'utc_timestamp': '2024-01-01 15:00:00',
-    'value': 19.799999237060547,
-    'lower': 15.839999198913574,
-    'upper': 23.759998321533203
+    'timestamp': '2024-03-22 15:00:00',
+    'fcr_n_price': 5.73,
+    'fcr_n_price_upper': 7.73,
+    'fcr_n_price_lower': 4.73,
+    'spot_price': 82.62
 },
 {
-    'utc_timestamp': '2024-01-01 16:00:00',
-    'value': 14.800000190734863,
-    'lower': 11.84000015258789,
-    'upper': 17.760000228881836
+    'timestamp': '2024-03-22 16:00:00',
+    'fcr_n_price': 4.56,
+    'fcr_n_price_upper': 6.56,
+    'fcr_n_price_lower': 2.56,
+    'spot_price': 179.71
 },
 {
-    'utc_timestamp': '2024-01-01 17:00:00',
-    'value': 14.800000190734863,
-    'lower': 11.84000015258789,
-    'upper': 17.760000228881836
+    'timestamp': '2024-03-22 17:00:00',
+    'fcr_n_price': 5.63,
+    'fcr_n_price_upper': 7.63,
+    'fcr_n_price_lower': 5.13,
+    'spot_price': 170.83
 },
 {
-    'utc_timestamp': '2024-01-01 18:00:00',
-    'value': 14.800000190734863,
-    'lower': 11.84000015258789,
-    'upper': 17.760000228881836
+    'timestamp': '2024-03-22 18:00:00',
+    'fcr_n_price': 5.41,
+    'fcr_n_price_upper': 8.41,
+    'fcr_n_price_lower': 2.41,
+    'spot_price': 180.27
 },
 {
-    'utc_timestamp': '2024-01-01 19:00:00',
-    'value': 8.0,
-    'lower': 6.400000095367432,
-    'upper': 9.600000381469727
+    'timestamp': '2024-03-22 19:00:00',
+    'fcr_n_price': 11.73,
+    'fcr_n_price_upper': 17.73,
+    'fcr_n_price_lower': 3.73,
+    'spot_price': 214.55
 },
 {
-    'utc_timestamp': '2024-01-01 20:00:00',
-    'value': 1.9199999570846558,
-    'lower': 1.5360000133514404,
-    'upper': 2.303999900817871
+    'timestamp': '2024-03-22 20:00:00',
+    'fcr_n_price': 32.86,
+    'fcr_n_price_upper': 36.86,
+    'fcr_n_price_lower': 15.86,
+    'spot_price': 150.62
 },
 {
-    'utc_timestamp': '2024-01-01 21:00:00',
-    'value': 1.0,
-    'lower': 0.800000011920929,
-    'upper': 1.2000000476837158
+    'timestamp': '2024-03-22 21:00:00',
+    'fcr_n_price': 20.51,
+    'fcr_n_price_upper': 34.51,
+    'fcr_n_price_lower': 18.51,
+    'spot_price': 79.22
 },
 {
-    'utc_timestamp': '2024-01-01 22:00:00',
-    'value': 1.0,
-    'lower': 0.800000011920929,
-    'upper': 1.2000000476837158
+    'timestamp': '2024-03-22 22:00:00',
+    'fcr_n_price': 35.09,
+    'fcr_n_price_upper': 43.09,
+    'fcr_n_price_lower': 33.09,
+    'spot_price': 33.9
 },
 {
-    'utc_timestamp': '2024-01-01 23:00:00',
-    'value': 2.9000000953674316,
-    'lower': 2.320000171661377,
-    'upper': 3.4800000190734863
+    'timestamp': '2024-03-22 23:00:00',
+    'fcr_n_price': 47.12,
+    'fcr_n_price_upper': 49.12,
+    'fcr_n_price_lower': 45.12,
+    'spot_price': 49.12
 }]

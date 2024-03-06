@@ -7,7 +7,8 @@
    import { data } from '../lib/data.js'
 
 
-   let startingValue = 0
+   const startingValue = 0
+   const fineMultiplication = 3
 
 
     let ptus = Array(24).fill().map((_, i) => i); // Example PTUs
@@ -48,8 +49,6 @@
 
         let currentChargeState = getItem(chargeState, index - 1)
 
-        console.log(currentChargeState)
-
         //  When we do nothing
         if (state == "0") {
             estimatedRevenue.upper[index] = 0
@@ -64,9 +63,9 @@
                 return currentChargeState
   
             } else {
-                estimatedRevenue.upper[index] = -(data[index].upper )
-                estimatedRevenue.lower[index] = -(data[index].lower )
-                estimatedRevenue.value[index] = -(data[index].value )
+                estimatedRevenue.upper[index] = -(data[index].spot_price )
+                estimatedRevenue.lower[index] = -(data[index].spot_price )
+                estimatedRevenue.value[index] = -(data[index].spot_price )
                 return currentChargeState + 50
             }
         }
@@ -76,24 +75,41 @@
             if (currentChargeState <= 0) {
                 return currentChargeState
             } else {
-                estimatedRevenue.upper[index]  = (data[index].upper)
-                estimatedRevenue.lower[index]  = (data[index].lower)
-                estimatedRevenue.value[index]  = (data[index].value)
+                estimatedRevenue.upper[index]  = (data[index].spot_price)
+                estimatedRevenue.lower[index]  = (data[index].spot_price)
+                estimatedRevenue.value[index]  = (data[index].spot_price)
                 return currentChargeState - 50
             }
 
         }
 
+        // When we want to sell to FCRN
+        if (state == "3") {
+            if (currentChargeState <= 0) {
+                estimatedRevenue.upper[index]  = -(data[index].fcr_n_price_upper) * fineMultiplication
+                estimatedRevenue.lower[index]  = -(data[index].fcr_n_price_lower) * fineMultiplication
+                estimatedRevenue.value[index]  = ((estimatedRevenue.upper[index] + estimatedRevenue.lower[index]) / 2)
+                return currentChargeState
+            } else if (currentChargeState >= 50) {
+                estimatedRevenue.upper[index]  = -(data[index].fcr_n_price_upper) * fineMultiplication
+                estimatedRevenue.lower[index]  = -(data[index].fcr_n_price_lower) * fineMultiplication
+                estimatedRevenue.value[index]  = ((estimatedRevenue.upper[index] + estimatedRevenue.lower[index]) / 2)
+                return currentChargeState
+            } else {
+                estimatedRevenue.upper[index]  = (data[index].fcr_n_price_upper)
+                estimatedRevenue.lower[index]  = (data[index].fcr_n_price_lower) 
+                estimatedRevenue.value[index]  = ((estimatedRevenue.upper[index] + estimatedRevenue.lower[index]) / 2)
+                return currentChargeState
+
+            }
+        }
+
         return currentChargeState
-
-
     }
 
     // Function to update a specific PTU's selected value
     function updateSelectedValue(index, value) {
         selectedValues[index] = value;
-
-
         for (let i = index; i < chargeState.length; i++) {
             chargeState[i] = calculateChargeState(index, selectedValues[index])
             }
@@ -163,12 +179,13 @@
 <button class="fixed top-0 right-0 p-2 sm:p-4 z-50 bg-black rounded-bl-lg shadow-md text-white font-bold tracking-wide" onclick="modal.showModal()">RULES</button>
 
 
-<main>
+<main class="flex flex-col">
     <h1 class="text-4xl pb-6 ">Welcome to the Energy bidding Game!</h1>
     
 
     <div class="w-full h-80 ">
         <Chart />
+        
     </div>
 
     <div class="w-full sm:h-72 flex flex-col sm:flex-row  gap-3 py-2">
@@ -251,9 +268,21 @@
                 </div>
 
                 <fieldset>
-                    <div>
-                        {estimatedRevenue.value[index].toFixed(2)}
+                    {#if estimatedRevenue.value[index].toFixed(0) < 0}
+                    <div class="font-medium text-red-600">
+                        {estimatedRevenue.value[index].toFixed(0)}
                     </div>
+                    {:else if estimatedRevenue.value[index].toFixed(0) > 0}
+                    <div class="font-medium text-emerald-600">
+                        {estimatedRevenue.value[index].toFixed(0)}
+                    </div>
+                    {:else}
+                    <div class="font-medium">
+                        {estimatedRevenue.value[index].toFixed(0)}
+                    </div>
+
+                    {/if}
+
                     <div>
                         <input class="hidden radio" type="radio" id={`no-bid-${ptu}`} name={`select-${ptu}`} value="0" bind:group={selectedValues[ptu]} on:change={() => updateSelectedValue(ptu, '0')}  checked />
                         <label class="radio-label inline-block p-3 border border-gray-300 rounded-md cursor-pointer hover:bg-blue-100 hover:border-blue-500" for={`no-bid-${ptu}`}></label>
@@ -270,14 +299,7 @@
                         <input class="hidden radio" type="radio" id={`fcrn-${ptu}`} name={`select-${ptu}`} value="3" bind:group={selectedValues[ptu]} on:change={() => updateSelectedValue(ptu, '3')}  />
                         <label class="radio-label inline-block p-3 border border-gray-300 rounded-md cursor-pointer hover:bg-blue-100 hover:border-blue-500" for={`fcrn-${ptu}`}></label>
                     </div>
-
-
-
                 </fieldset>
-                
-
-                
-
             </div>
         {/each}
     </div>
