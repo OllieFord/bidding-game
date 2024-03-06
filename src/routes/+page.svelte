@@ -7,9 +7,12 @@
    import { data } from '../lib/data.js'
 
 
+   let startingValue = 0
+
+
     let ptus = Array(24).fill().map((_, i) => i); // Example PTUs
     let selectedValues = Array(ptus.length).fill("0"); // Default to '0' for all
-    let chargeState = Array(ptus.length).fill(0)
+    let chargeState = Array(ptus.length).fill(startingValue)
 
     let estimatedRevenue = {
         upper: Array(ptus.length).fill(0),
@@ -26,7 +29,7 @@
 
     function getItem(array, index) {
         if (index === -1) {
-            return array[0];
+            return startingValue;
         }
         return array[index];
         }
@@ -88,7 +91,6 @@
 
     // Function to update a specific PTU's selected value
     function updateSelectedValue(index, value) {
-        console.log(selectedValues)
         selectedValues[index] = value;
 
 
@@ -98,30 +100,7 @@
     }
 
 
-   let option = {
-    title: {
-        text: 'Battery charge state'
-    },
-  xAxis: {
-    type: 'category',
-    boundaryGap: false,
-    data: data.map(function (item) {
-          return item.utc_timestamp;
-        })
-  },
-  yAxis: {
-    type: 'value',
-    max: 100
-  },
-  series: [
-    {
-      data: chargeState,
-      type: 'line',
-      step: 'end',
-      areaStyle: {}
-    }
-  ]
-};
+   
 </script>
 
 
