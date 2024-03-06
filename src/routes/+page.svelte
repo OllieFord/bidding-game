@@ -9,7 +9,7 @@
 
     let ptus = Array(24).fill().map((_, i) => i); // Example PTUs
     let selectedValues = Array(ptus.length).fill("0"); // Default to '0' for all
-    let chargeState = Array(ptus.length).fill(50)
+    let chargeState = Array(ptus.length).fill(0)
 
     let estimatedRevenue = {
         upper: Array(ptus.length).fill(0),
@@ -61,9 +61,9 @@
                 return currentChargeState
   
             } else {
-                estimatedRevenue.upper[index] = -(data[index].upper * 0.5)
-                estimatedRevenue.lower[index] = -(data[index].lower * 0.5)
-                estimatedRevenue.value[index] = -(data[index].value * 0.5)
+                estimatedRevenue.upper[index] = -(data[index].upper )
+                estimatedRevenue.lower[index] = -(data[index].lower )
+                estimatedRevenue.value[index] = -(data[index].value )
                 return currentChargeState + 50
             }
         }
@@ -73,9 +73,9 @@
             if (currentChargeState <= 0) {
                 return currentChargeState
             } else {
-                estimatedRevenue.upper[index]  = (data[index].upper * 0.5)
-                estimatedRevenue.lower[index]  = (data[index].lower * 0.5)
-                estimatedRevenue.value[index]  = (data[index].value * 0.5)
+                estimatedRevenue.upper[index]  = (data[index].upper)
+                estimatedRevenue.lower[index]  = (data[index].lower)
+                estimatedRevenue.value[index]  = (data[index].value)
                 return currentChargeState - 50
             }
 
@@ -147,24 +147,28 @@
             </div>
             <!-- Modal body -->
             <div class="p-4 md:p-5 space-y-4">
+                <h2 class="text-lg font-bold">OBJECTIVE</h2>
                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                    OBJECTIVE: You want to generate as much revenue as possible for the whole day.
+                    You want to generate as much revenue as possible for the whole day.
                 </p>
                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                    you have a 1MW / 2MWh BESS which is at 50 % SoC in the beginning of the day. You have 3 options per PTU: sell it to FCR-N, charge it or discharge it with the day-ahead market prices. There are 8 PTUs.
+                    You have a 1MW / 2MWh BESS which is at 50 % SoC in the beginning of the day. You have 3 options per PTU: sell it to FCR-N, charge it or discharge it with the day-ahead market prices. There are 8 PTUs.
                 </p>
+                <h3 class="text-md font-medium">FCR-N</h3>
                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                    - FCR-N: You receive the FCR-N price for a PTU, it is sold for 1MW. If you sell it to FCR-N the SoC must be at 50%, otherwise you get fines for 3 x price. After the FCR-N hour the battery will be at 50% SoC. There are no energy costs for selling it to FCR-N.
+                    You receive the FCR-N price for a PTU, it is sold for 1MW. If you sell it to FCR-N the SoC must be at 50%, otherwise you get fines for 3 x price. After the FCR-N hour the battery will be at 50% SoC. There are no energy costs for selling it to FCR-N.
                 </p>
+                <h3 class="text-md font-medium">CHARGE</h3>
                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                    - CHARGE: You pay the day-ahead price for 1MWh. If you charge the BESS during a PTU, the SoC will increase by 50%, so you can charge the BESS for 2 consecutive PTUs if the BESS is at 0% in the beginning of the first hour. If you charge the BESS and the SoC is already 100%, nothing happens during that PTU, and you pay/receive nothing.
+                    You pay the day-ahead price for 1MWh. If you charge the BESS during a PTU, the SoC will increase by 50%, so you can charge the BESS for 2 consecutive PTUs if the BESS is at 0% in the beginning of the first hour. If you charge the BESS and the SoC is already 100%, nothing happens during that PTU, and you pay/receive nothing.
                 </p>
-
+                <h3 class="text-md font-medium">DISCHARGE</h3>
                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                    - DISCHARGE: You receive the day-ahead price for 1MWh. If you discharge the BESS during a PTU, the SoC will decrease by 50%, so you can discharge the BESS for 2 consecutive PTUs if the BESS is at 100% in the beginning of the first hour. If you discharge the BESS and the SoC is already at 0%, nothing happens during that PTU, and you pay/receive nothing. 
+                    You receive the day-ahead price for 1MWh. If you discharge the BESS during a PTU, the SoC will decrease by 50%, so you can discharge the BESS for 2 consecutive PTUs if the BESS is at 100% in the beginning of the first hour. If you discharge the BESS and the SoC is already at 0%, nothing happens during that PTU, and you pay/receive nothing. 
                 </p>
+                <h3 class="text-md font-medium">NOTHING</h3>
                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                    - NOTHING: you can also choose to not to bid
+                    You can also choose to not to bid
                 </p>
                 
 
@@ -208,7 +212,7 @@
          <Battery_chart {chargeState}></Battery_chart>
     </div>
 
-
+<!-- 
     <div class="flex flex-row overflow-scroll sm:overflow-x-scroll ">
 
         {#each ptus as ptu, index}
@@ -227,9 +231,75 @@
                 </div>
 
             </div>
+        {/each}
+    </div> -->
+
+    
+
+
+    <div class="flex flex-row justify-evenly w-full pb-4 mb-16 ">
+        <div class=" rounded-md text-center text-sm font-bold flex flex-col gap-1 justify-evenly ">
+                <div class="mb-2 uppercase tracking-tight ">
+                   Bidding Controls
+                </div>
+                <div class="flex-grow flex flex-col text-right items-center">
+                
+                    <div class="flex flex-grow items-center ">
+                        No Bid
+                    </div>
+                    <div class="flex flex-grow items-center">
+                        Charge
+                    </div>
+                    <div class="flex flex-grow items-center">
+                        Discharge
+                    </div>
+                    <div class="flex flex-grow items-center">
+                        FCR-N
+                    </div>
+                    </div>
+                
+        </div>
+
+        {#each ptus as ptu, index}
+
+            <div class=" border-gray-300 rounded-md text-center flex flex-col text-xs gap-1 ">
+                <div class="mb-2">
+                    {#if ptu < 10}
+                        0{ptu}:00
+                    {:else}
+                        {ptu}:00
+                    {/if}
+                </div>
+
+                <fieldset>
+                    <div>
+                        {estimatedRevenue.value[index].toFixed(2)}
+                    </div>
+                    <div>
+                        <input class="hidden radio" type="radio" id={`no-bid-${ptu}`} name={`select-${ptu}`} value="0" bind:group={selectedValues[ptu]} on:change={() => updateSelectedValue(ptu, '0')}  checked />
+                        <label class="radio-label inline-block p-3 border border-gray-300 rounded-md cursor-pointer hover:bg-blue-100 hover:border-blue-500" for={`no-bid-${ptu}`}></label>
+                    </div>
+                    <div>
+                        <input class="hidden radio" type="radio" id={`charge-${ptu}`} name={`select-${ptu}`} value="1" bind:group={selectedValues[ptu]} on:change={() => updateSelectedValue(ptu, '1')}  />
+                        <label class="radio-label inline-block p-3 border border-gray-300 rounded-md cursor-pointer hover:bg-blue-100 hover:border-blue-500" for={`charge-${ptu}`}></label>
+                    </div>
+                    <div>
+                        <input class="hidden radio" type="radio" id={`discharge-${ptu}`} name={`select-${ptu}`} value="2" bind:group={selectedValues[ptu]} on:change={() => updateSelectedValue(ptu, '2')}  />
+                        <label class="radio-label inline-block p-3 border border-gray-300 rounded-md cursor-pointer hover:bg-blue-100 hover:border-blue-500" for={`discharge-${ptu}`}></label>
+                    </div>
+                    <div>
+                        <input class="hidden radio" type="radio" id={`fcrn-${ptu}`} name={`select-${ptu}`} value="3" bind:group={selectedValues[ptu]} on:change={() => updateSelectedValue(ptu, '3')}  />
+                        <label class="radio-label inline-block p-3 border border-gray-300 rounded-md cursor-pointer hover:bg-blue-100 hover:border-blue-500" for={`fcrn-${ptu}`}></label>
+                    </div>
 
 
 
+                </fieldset>
+                
+
+                
+
+            </div>
         {/each}
     </div>
     
@@ -237,4 +307,17 @@
   
  
 </main>
+
+
+<style>
+
+    .radio:checked + .radio-label {
+        background-color: #737373; /* Background of selected button */
+        border-color: #a3a3a3; /* Border color of selected button */
+        border-radius: 6px;
+    }
+</style>
+
+
+
 
