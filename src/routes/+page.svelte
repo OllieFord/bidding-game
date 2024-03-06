@@ -283,7 +283,7 @@
                 
         </div>
 
-        <div class="flex flex-row flex-grow space-x-2 col-span-4">
+        <div class="flex flex-row flex-grow justify-evenly col-span-4">
 
         {#each ptus as ptu, index}
 
@@ -343,7 +343,7 @@
 <style>
 
     .radio:checked + .radio-label {
-        background-color: #737373; /* Background of selected button */
+        background-color: #e5e5e5; /* Background of selected button */
         border-color: #a3a3a3; /* Border color of selected button */
         border-radius: 6px;
     }

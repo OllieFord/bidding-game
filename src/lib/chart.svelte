@@ -7,6 +7,12 @@
 
 
     export let option = {
+        grid: {
+  left: 40,
+  top: 60,
+  right: 5,
+  bottom: 40
+},
     title: {
         text: 'Market Price Forecasts'
     },
