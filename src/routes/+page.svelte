@@ -50,6 +50,7 @@
     function calculateChargeState(index, state) {
 
         let currentChargeState = getItem(chargeState, index - 1)
+        let currentAction = selectedValues[index]
 
         //  When we do nothing
         if (state == "0") {
@@ -62,6 +63,10 @@
         //When we want to charge
         if (state == "1") {
             if (currentChargeState > 50) {
+                selectedValues[index] = "0"
+                estimatedRevenue.upper[index] = 0
+                estimatedRevenue.lower[index] = 0
+                estimatedRevenue.value[index] = 0
                 return currentChargeState
   
             } else {
@@ -75,6 +80,10 @@
         // When we want to sell to FCRD
         if (state == "2") {
             if (currentChargeState <= 0) {
+                estimatedRevenue.upper[index] = 0
+                estimatedRevenue.lower[index] = 0
+                estimatedRevenue.value[index] = 0
+                selectedValues[index] = "0"
                 return currentChargeState
             } else {
                 estimatedRevenue.upper[index]  = (data[index].spot_price)
@@ -112,13 +121,12 @@
     // Function to update a specific PTU's selected value
     function updateSelectedValue(index, value) {
         selectedValues[index] = value;
-        for (let i = index; i < chargeState.length; i++) {
+        for (let i = 0; i < chargeState.length; i++) {
             chargeState[i] = calculateChargeState(i, selectedValues[i])
             }
+        console.log(selectedValues)
     }
 
-
-   
 </script>
 
 <div class="h-20 fixed top-0 right-0">
