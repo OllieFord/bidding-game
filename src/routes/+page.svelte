@@ -23,6 +23,17 @@
         lower: Array(ptus.length).fill(0)
     };
 
+
+    function reset() {
+        estimatedRevenue = {
+            upper: Array(ptus.length).fill(0),
+            value: Array(ptus.length).fill(0),
+            lower: Array(ptus.length).fill(0)
+        }
+        chargeState = Array(ptus.length).fill(startingValue)
+        selectedValues = Array(ptus.length).fill("0");
+    }
+
     function sum(array) {
         return array.reduce((accumulator, currentValue) => {
             return accumulator + currentValue
@@ -191,6 +202,7 @@
 
 <button class="fixed top-[72px] right-0 p-2 sm:p-4 z-50 bg-black rounded-bl-lg shadow-md text-white font-bold tracking-wide" onclick="modal.showModal()">RULES</button>
 
+<button class="fixed top-[128px] right-0 p-2 sm:p-4 z-50 bg-red-600 rounded-l-lg shadow-md text-white font-bold tracking-wide" on:click={reset}>RESET</button>
 
 <main class="w-full">
     <h1 class="text-4xl pb-6 ">Welcome to the Energy bidding Game!</h1>
