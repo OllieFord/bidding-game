@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+    .font-outline-2 {
+        color: black;
+        color: #fff;
+        text-shadow: 0px 0px 4px #02061715;
+                
+    }
+
+    .font-outline-4 {
+        -webkit-text-stroke: 4px black;
+    }
+}

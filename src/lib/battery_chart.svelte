@@ -54,18 +54,24 @@ let option = {
         },
         
   },
-  
   yAxis: {
     type: 'value',
-    max: 100
+    min: 0,
+    max: 100,
+    splitNumber: 2,
+    axisLabel: {
+        formatter: '{value} %',
+      }
+
   },
   series: [
     {
       data: chargeState,
       type: 'line',
-      step: 'end',
+    //   step: 'end',
+    smooth: true,
       itemStyle: {
-            color: '#333'
+            color: '#15803d'
           },
       areaStyle: {
         color: '#35c759',

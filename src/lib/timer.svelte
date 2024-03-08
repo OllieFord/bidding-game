@@ -35,9 +35,9 @@
 </script>
 
 <section class="app p-4 rounded-md overflow-hidden ">
-	<svg class="rounded-bl-lg shadow-md" viewBox="0 0 10 10" style="background: hsl({120 * (1-$progress)}deg, 50%, {100 - 50 * $progress}%)" preserveAspectRatio="none">
+	<svg viewBox="0 0 10 10" style="background: hsl({120 * (1-$progress)}deg, 50%, {100 - 50 * $progress}%)" preserveAspectRatio="none">
 		<rect
-			y={10 * $progress}
+			y={100 * $progress}
 			width=10
 			height={10 * (1-$progress)}
 			fill="hsl({120 * (1-$progress)}deg, 50%, 50%)"
@@ -52,7 +52,9 @@
 <style>
 	svg {
 		position: absolute;
-		left: 0;right: 0;
+		left: 0;
+        right: 0;
+        top: 0;
 		width: 100%;
 		height: 100%;
 	}
@@ -64,13 +66,13 @@
       Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   }
   .app {
-    overflow: hidden;
-    display: flex;
-    align-items: flex-end;
-    /* height: 100vh; */
+    /* overflow: hidden; */
+    /* display: flex; */
+    /* align-items: flex-end; */
+    height: 100%;
   }
   .timer {
-    display: flex;
+    /* display: flex; */
     background-color: rgb(106, 186, 255);
     height: 100%;
     width: 100%;
