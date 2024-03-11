@@ -233,9 +233,19 @@
 
 </Modal>
 
-<main class="w-full">
+<div class="!display sm:hidden p-4 text-center">
+    <div>
+        <strong>Sorry!</strong> 
+    </div>
+    <div>
+        <br> This game hasn't been optimised for mobile!
+    </div>
+        
+    </div>
 
-    <div class="flex flex-row w-full flex-grow h-vh">
+<main class="hidden sm:block w-full">
+
+    <div class="flex flex-col sm:flex-row w-full flex-grow h-vh">
         <div class="flex flex-col pr-4 min-h-[488px] h-auto space-y-4">
             <div class="px-4 bg-white rounded-lg shadow-sm py-4">
                 <h2 class="text-xl mb-1 leading-5 font-normal ">Estimated Revenue</h2>
@@ -258,11 +268,11 @@
             </div>
 
 
-            <div class="  bg-white rounded-lg ">
+            <div class="rounded-lg ">
                 <button class="px-4 py-3 bg-blue-700 hover:scale-105  rounded-lg shadow-md text-white font-normal transition-all tracking-wide" on:click={() => (showModal = true)}> Submit to Leaderboard </button>
             </div>
 
-            <div class="!mt-auto text-sm font-bold z-50 pb-4 -mr-2">
+            <div class="hidden sm:block !mt-auto text-sm font-bold z-50 pb-4 -mr-2">
                     <div class="flex-grow flex flex-col">
                         <div class="flex flex-grow items-center justify-end h-6">
                             Revenue
@@ -287,8 +297,8 @@
         </div>
         
 
-        <div class="flex flex-col flex-grow h-vh bg-white p-4 rounded-lg shadow-sm">
-            <div class="h-64">
+        <div class=" overflow-x-scroll sm:overflow-auto flex flex-col flex-grow h-vh bg-white p-4 rounded-lg shadow-sm">
+            <div class="h-64 w-full">
                 <Chart />
             </div>
             <div class="h-52 pb-6 ">

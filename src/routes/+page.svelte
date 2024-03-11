@@ -2,8 +2,6 @@
 	import logo from '$lib/assets/cover_image_energy_bidding.png';
 </script>
 
-
-
 <div class=" image-wrapper absolute top-0 left-0 bottom-0 right-0 overflow-hidden z-0 object-cover" style="background-image: url({logo});">
 
 </div>
