@@ -173,26 +173,26 @@
             <div class="p-4 md:p-5 space-y-4">
                 <h2 class="text-lg font-bold">OBJECTIVE</h2>
                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                    You want to generate as much revenue as possible for the whole day.
+                    You want to generate as much revenue as possible for the whole day with a battery energy storage system (BESS).
                 </p>
                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                    You have a 1MW / 2MWh BESS which is at 50 % SoC in the beginning of the day. You have 3 options per PTU: sell it to FCR-N, charge it or discharge it with the day-ahead market prices. There are 8 PTUs.
+                    You have a 1MW/2MWh BESS which is at 0% state of charge (SoC) in the beginning of the day. Each hour (PTU) you have 4 options: (1) sell it to FCR-N, (2) charge or (3) discharge it with the day-ahead electricity prices, or (4) do nothing. There are 24 hourly PTUs.
                 </p>
                 <h3 class="text-md font-medium">FCR-N</h3>
                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                    You receive the FCR-N price for a PTU, it is sold for 1MW. If you sell it to FCR-N the SoC must be at 50%, otherwise you get fines for 3 x price. After the FCR-N hour the battery will be at 50% SoC. There are no energy costs for selling it to FCR-N.
+                    You receive the <i>forecasted FCR-N price as a lower- and upper-bound interval</i> for each PTU. With this BESS, you can sell 1MW on FCR-N. If you sell it to FCR-N the SoC must be at 50%, otherwise you will pay a penalty of 3x the price. After the FCR-N hour the battery will be at 50% SoC. There are no energy costs for selling it to FCR-N.
                 </p>
                 <h3 class="text-md font-medium">CHARGE</h3>
                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                    You pay the day-ahead price for 1MWh. If you charge the BESS during a PTU, the SoC will increase by 50%, so you can charge the BESS for 2 consecutive PTUs if the BESS is at 0% in the beginning of the first hour. If you charge the BESS and the SoC is already 100%, nothing happens during that PTU, and you pay/receive nothing.
+                    You receive the <i>known day-ahead electricity (SPOT) price</i> for each PTU. With this BESS, you can charge and pay this price for 1MWh each PTU. If you charge the BESS during a PTU, the SoC will increase by 50%, so you can charge the BESS for 2 consecutive PTUs if the BESS is at 0% in the beginning of the first hour. If you charge the BESS and the SoC is already 100%, nothing happens during that PTU, and you pay/receive nothing.
                 </p>
                 <h3 class="text-md font-medium">DISCHARGE</h3>
                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                    You receive the day-ahead price for 1MWh. If you discharge the BESS during a PTU, the SoC will decrease by 50%, so you can discharge the BESS for 2 consecutive PTUs if the BESS is at 100% in the beginning of the first hour. If you discharge the BESS and the SoC is already at 0%, nothing happens during that PTU, and you pay/receive nothing. 
+                    You receive the <i>known day-ahead electricity (SPOT) price</i> for each PTU. With this BESS, you can discharge and receive this price for 1MWh each PTU. If you discharge the BESS during a PTU, the SoC will decrease by 50%, so you can discharge the BESS for 2 consecutive PTUs if the BESS is at 100% in the beginning of the first hour. If you discharge the BESS and the SoC is already at 0%, nothing happens during that PTU, and you pay/receive nothing.
                 </p>
-                <h3 class="text-md font-medium">NOTHING</h3>
+                <h3 class="text-md font-medium">NO BID</h3>
                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                    You can also choose to not to bid
+                    You can also choose to not to bid.
                 </p>
                 
 
