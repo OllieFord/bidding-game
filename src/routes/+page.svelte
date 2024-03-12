@@ -8,7 +8,7 @@
 
 
 <div class="z-10 flex flex-col h-full">
-    <div class="mb-12 sm:mb-20 max-w-[calc(100vw/1.2)] md:max-w-[calc(100vw/1.2)] lg:max-w-[calc(100vw/1.7)] xl:max-w-[calc(100vw/2)] 2xl:max-w-[calc(100vw/2.5)]  font-outline-2 uppercase text-black/80 p-8 -ml-4 rounded-r-xl bg-white/10 shadow-lg ring-1 backdrop-blur-md ring-black/5">
+    <div class="mb-12 sm:mb-20 max-w-[calc(100vw/1.2)] md:max-w-[calc(100vw/1.2)] lg:max-w-[calc(100vw/1.7)] xl:max-w-[calc(100vw/2)] 2xl:max-w-[calc(100vw/2.5)]  font-outline-2 uppercase text-black/80 p-8 -ml-4 rounded-r-xl bg-white/30 shadow-lg ring-1 backdrop-blur-md ring-black/5">
         <h1 class=" text-3xl sm:text-6xl font-bold pb-4 sm:pb-6 z-10">Energy bidding <br> Game</h1>
         <p class="text-lg sm:text-2xl font-medium">Optimizing for a cleaner future</p>
     </div>

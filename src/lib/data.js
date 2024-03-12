@@ -1,6 +1,7 @@
 
 
-export const data = [{
+export const data = [
+    {
     'timestamp': '2024-03-22 00:00:00',
     'fcr_n_price': 77.77,
     'fcr_n_price_upper': 89.77,
@@ -167,4 +168,11 @@ export const data = [{
     'fcr_n_price_upper': 49.12,
     'fcr_n_price_lower': 45.12,
     'spot_price': 49.12
-}]
+    },
+    {
+        'timestamp': '2024-03-23 00:00:00',
+        'fcr_n_price': 47.12,
+        'fcr_n_price_upper': 49.12,
+        'fcr_n_price_lower': 45.12,
+        'spot_price': 49.12
+    }]

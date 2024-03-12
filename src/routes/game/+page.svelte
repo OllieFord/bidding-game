@@ -15,8 +15,8 @@
 
 
     let ptus = Array(24).fill().map((_, i) => i); // Example PTUs
-    let selectedValues = Array(ptus.length).fill("0"); // Default to '0' for all
-    let chargeState = Array(ptus.length).fill(startingValue)
+    let selectedValues = Array(ptus.length+1).fill("0"); // Default to '0' for all
+    let chargeState = Array(ptus.length+1).fill(startingValue)
 
     let estimatedRevenue = {
         upper: Array(ptus.length).fill(0),
@@ -31,8 +31,10 @@
             value: Array(ptus.length).fill(0),
             lower: Array(ptus.length).fill(0)
         }
-        chargeState = Array(ptus.length).fill(startingValue)
-        selectedValues = Array(ptus.length).fill("0");
+        chargeState = Array(ptus.length+1).fill(startingValue)
+        selectedValues = Array(ptus.length+1).fill("0");
+
+
     }
 
     function sum(array) {
@@ -61,14 +63,16 @@
 
     function calculateChargeState(index, state) {
 
-        let currentChargeState = getItem(chargeState, index - 1)
+        let currentChargeState = getItem(chargeState, index-1)
         let currentAction = selectedValues[index]
+
+        let priceIndex = index - 1
 
         //  When we do nothing
         if (state == "0") {
-            estimatedRevenue.upper[index] = 0
-            estimatedRevenue.lower[index] = 0
-            estimatedRevenue.value[index] = 0
+            estimatedRevenue.upper[priceIndex] = 0
+            estimatedRevenue.lower[priceIndex] = 0
+            estimatedRevenue.value[priceIndex] = 0
             return currentChargeState
         }
 
@@ -76,15 +80,15 @@
         if (state == "1") {
             if (currentChargeState > 50) {
                 // selectedValues[index] = "0"
-                estimatedRevenue.upper[index] = 0
-                estimatedRevenue.lower[index] = 0
-                estimatedRevenue.value[index] = 0
+                estimatedRevenue.upper[priceIndex] = 0
+                estimatedRevenue.lower[priceIndex] = 0
+                estimatedRevenue.value[priceIndex] = 0
                 return currentChargeState
   
             } else {
-                estimatedRevenue.upper[index] = -(data[index].spot_price )
-                estimatedRevenue.lower[index] = -(data[index].spot_price )
-                estimatedRevenue.value[index] = -(data[index].spot_price )
+                estimatedRevenue.upper[priceIndex] = -(data[priceIndex].spot_price )
+                estimatedRevenue.lower[priceIndex] = -(data[priceIndex].spot_price )
+                estimatedRevenue.value[priceIndex] = -(data[priceIndex].spot_price )
                 return currentChargeState + 50
             }
         }
@@ -92,15 +96,15 @@
         // When we want to sell to FCRD
         if (state == "2") {
             if (currentChargeState <= 0) {
-                estimatedRevenue.upper[index] = 0
-                estimatedRevenue.lower[index] = 0
-                estimatedRevenue.value[index] = 0
+                estimatedRevenue.upper[priceIndex] = 0
+                estimatedRevenue.lower[priceIndex] = 0
+                estimatedRevenue.value[priceIndex] = 0
                 // selectedValues[index] = "0"
                 return currentChargeState
             } else {
-                estimatedRevenue.upper[index]  = (data[index].spot_price)
-                estimatedRevenue.lower[index]  = (data[index].spot_price)
-                estimatedRevenue.value[index]  = (data[index].spot_price)
+                estimatedRevenue.upper[priceIndex]  = (data[priceIndex].spot_price)
+                estimatedRevenue.lower[priceIndex]  = (data[priceIndex].spot_price)
+                estimatedRevenue.value[priceIndex]  = (data[priceIndex].spot_price)
                 return currentChargeState - 50
             }
 
@@ -109,19 +113,19 @@
         // When we want to sell to FCRN
         if (state == "3") {
             if (currentChargeState <= 0) {
-                estimatedRevenue.upper[index]  = -(data[index].fcr_n_price_upper) * fineMultiplication
-                estimatedRevenue.lower[index]  = -(data[index].fcr_n_price_lower) * fineMultiplication
-                estimatedRevenue.value[index]  = ((estimatedRevenue.upper[index] + estimatedRevenue.lower[index]) / 2)
+                estimatedRevenue.upper[priceIndex]  = -(data[priceIndex].fcr_n_price_upper) * fineMultiplication
+                estimatedRevenue.lower[priceIndex]  = -(data[priceIndex].fcr_n_price_lower) * fineMultiplication
+                estimatedRevenue.value[priceIndex]  = ((estimatedRevenue.upper[index] + estimatedRevenue.lower[priceIndex]) / 2)
                 return currentChargeState
             } else if (currentChargeState > 50) {
-                estimatedRevenue.upper[index]  = -(data[index].fcr_n_price_upper) * fineMultiplication
-                estimatedRevenue.lower[index]  = -(data[index].fcr_n_price_lower) * fineMultiplication
-                estimatedRevenue.value[index]  = ((estimatedRevenue.upper[index] + estimatedRevenue.lower[index]) / 2)
+                estimatedRevenue.upper[priceIndex]  = -(data[priceIndex].fcr_n_price_upper) * fineMultiplication
+                estimatedRevenue.lower[priceIndex]  = -(data[priceIndex].fcr_n_price_lower) * fineMultiplication
+                estimatedRevenue.value[priceIndex]  = ((estimatedRevenue.upper[priceIndex] + estimatedRevenue.lower[priceIndex]) / 2)
                 return currentChargeState
             } else {
-                estimatedRevenue.upper[index]  = (data[index].fcr_n_price_upper)
-                estimatedRevenue.lower[index]  = (data[index].fcr_n_price_lower) 
-                estimatedRevenue.value[index]  = ((estimatedRevenue.upper[index] + estimatedRevenue.lower[index]) / 2)
+                estimatedRevenue.upper[priceIndex]  = (data[priceIndex].fcr_n_price_upper)
+                estimatedRevenue.lower[priceIndex]  = (data[priceIndex].fcr_n_price_lower) 
+                estimatedRevenue.value[priceIndex]  = ((estimatedRevenue.upper[priceIndex] + estimatedRevenue.lower[priceIndex]) / 2)
                 return currentChargeState
 
             }
@@ -132,10 +136,16 @@
 
     // Function to update a specific PTU's selected value
     function updateSelectedValue(index, value) {
-        selectedValues[index] = value;
-        for (let i = 0; i < chargeState.length; i++) {
+        selectedValues[index+1] = value;
+
+        
+        for (let i = 1; i < chargeState.length; i++) {
             chargeState[i] = calculateChargeState(i, selectedValues[i])
             }
+
+        console.log(chargeState)
+        console.log(selectedValues)
+        console.log(estimatedRevenue.value)
     }
 
 
@@ -144,10 +154,6 @@
 
 </script>
 
-
-<!-- <div class="h-20 fixed top-0 right-0 ">
-    <Timer/>
-</div> -->
 
 
 <dialog id="modal" class="backdrop:bg-gray-800/50 p-4 relative bg-white rounded-lg shadow ">
@@ -309,7 +315,7 @@
             <div class="font-bold uppercase tracking-tight">Bidding Controls</div>
             <div class="font-medium text-sm text-gray-600 tracking-tight">Click on the squares to make a bid</div>
         </div>
-        <div class="flex flex-row flex-grow justify-between pl-4 col-span-4">
+        <div class="flex flex-row flex-grow justify-between pl-[2.9rem] pr-6 col-span-4">
             
 
         {#each ptus as ptu, index}
@@ -340,23 +346,26 @@
                     {/if}
 
                     <div>
-                        <input class="hidden radio" type="radio" id={`no-bid-${ptu}`} name={`select-${ptu}`} value="0" bind:group={selectedValues[ptu]} on:change={() => updateSelectedValue(ptu, '0')}  checked />
+                        <input class="hidden radio" type="radio" id={`no-bid-${ptu}`} name={`select-${ptu}`} value="0" bind:group={selectedValues[ptu+1]}  on:change={() => updateSelectedValue(ptu, '0')}  checked />
                         <label class="radio-label inline-block p-3 border border-gray-500 rounded-md cursor-pointer hover:bg-blue-100 hover:border-blue-500" for={`no-bid-${ptu}`}></label>
                     </div>
                     <div>
-                        <input class="hidden radio" type="radio" id={`charge-${ptu}`} name={`select-${ptu}`} value="1" bind:group={selectedValues[ptu]} on:change={() => updateSelectedValue(ptu, '1')}  />
+                        <input class="hidden radio" type="radio" id={`charge-${ptu}`} name={`select-${ptu}`} value="1" bind:group={selectedValues[ptu+1]}  on:change={() => updateSelectedValue(ptu, '1')}  />
                         <label class="radio-label inline-block p-3 border border-gray-500 rounded-md cursor-pointer hover:bg-blue-100 hover:border-blue-500" for={`charge-${ptu}`}></label>
                     </div>
                     <div>
-                        <input class="hidden radio" type="radio" id={`discharge-${ptu}`} name={`select-${ptu}`} value="2" bind:group={selectedValues[ptu]} on:change={() => updateSelectedValue(ptu, '2')}  />
+                        <input class="hidden radio" type="radio" id={`discharge-${ptu}`} name={`select-${ptu}`} value="2" bind:group={selectedValues[ptu+1]} on:change={() => updateSelectedValue(ptu, '2')}  />
                         <label class="radio-label inline-block p-3 border border-gray-500 rounded-md cursor-pointer hover:bg-blue-100 hover:border-blue-500" for={`discharge-${ptu}`}></label>
                     </div>
                     <div>
-                        <input class="hidden radio" type="radio" id={`fcrn-${ptu}`} name={`select-${ptu}`} value="3" bind:group={selectedValues[ptu]} on:change={() => updateSelectedValue(ptu, '3')}  />
+                        <input class="hidden radio" type="radio" id={`fcrn-${ptu}`} name={`select-${ptu}`} value="3" bind:group={selectedValues[ptu+1]} on:change={() => updateSelectedValue(ptu, '3')}  />
                         <label class="radio-label inline-block p-3 border border-gray-500 rounded-md cursor-pointer hover:bg-blue-100 hover:border-blue-500" for={`fcrn-${ptu}`}></label>
                     </div>
                 </fieldset>
             </div>
+
+
+
         {/each}
         </div>
         </div>
