@@ -150,17 +150,17 @@
 </div> -->
 
 
-<dialog id="modal" class="backdrop:bg-gray-800/50 p-4 relative bg-white rounded-lg shadow dark:bg-gray-700 ">
+<dialog id="modal" class="backdrop:bg-gray-800/50 p-4 relative bg-white rounded-lg shadow ">
     <div id="extralarge-modal" tabindex="-1" class=" w-full overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative w-full max-w-7xl max-h-full">
         <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <div class="relative bg-white rounded-lg shadow ">
             <!-- Modal header -->
-            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                <h3 class="text-xl font-medium text-gray-900 dark:text-white">
+            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t ">
+                <h3 class="text-xl font-medium text-gray-900 ">
                     RULES
                 </h3>
-                <button type="button" class="text-gray-400 p-4 bg-transparent hover:scale-105 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="extralarge-modal">
+                <button type="button" class="text-gray-400 p-4 bg-transparent hover:scale-105 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-hide="extralarge-modal">
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                     </svg>
@@ -172,26 +172,26 @@
             <!-- Modal body -->
             <div class="p-4 md:p-5 space-y-4">
                 <h2 class="text-lg font-bold">OBJECTIVE</h2>
-                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                <p class="text-base leading-relaxed text-gray-500">
                     You want to generate as much revenue as possible for the whole day.
                 </p>
-                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                <p class="text-base leading-relaxed text-gray-500 ">
                     You have a 1MW / 2MWh BESS which is at 50 % SoC in the beginning of the day. You have 3 options per PTU: sell it to FCR-N, charge it or discharge it with the day-ahead market prices. There are 8 PTUs.
                 </p>
                 <h3 class="text-md font-medium">FCR-N</h3>
-                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                <p class="text-base leading-relaxed text-gray-500 ">
                     You receive the FCR-N price for a PTU, it is sold for 1MW. If you sell it to FCR-N the SoC must be at 50%, otherwise you get fines for 3 x price. After the FCR-N hour the battery will be at 50% SoC. There are no energy costs for selling it to FCR-N.
                 </p>
                 <h3 class="text-md font-medium">CHARGE</h3>
-                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                <p class="text-base leading-relaxed text-gray-500 ">
                     You pay the day-ahead price for 1MWh. If you charge the BESS during a PTU, the SoC will increase by 50%, so you can charge the BESS for 2 consecutive PTUs if the BESS is at 0% in the beginning of the first hour. If you charge the BESS and the SoC is already 100%, nothing happens during that PTU, and you pay/receive nothing.
                 </p>
                 <h3 class="text-md font-medium">DISCHARGE</h3>
-                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                <p class="text-base leading-relaxed text-gray-500 ">
                     You receive the day-ahead price for 1MWh. If you discharge the BESS during a PTU, the SoC will decrease by 50%, so you can discharge the BESS for 2 consecutive PTUs if the BESS is at 100% in the beginning of the first hour. If you discharge the BESS and the SoC is already at 0%, nothing happens during that PTU, and you pay/receive nothing. 
                 </p>
                 <h3 class="text-md font-medium">NOTHING</h3>
-                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                <p class="text-base leading-relaxed text-gray-500 ">
                     You can also choose to not to bid
                 </p>
                 
