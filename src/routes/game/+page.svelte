@@ -354,24 +354,30 @@
 
                         <div>
                             <input class="hidden radio" type="radio" id={`no-bid-${ptu}`} name={`select-${ptu}`} value="0" bind:group={selectedValues[ptu+1]}  on:change={() => updateSelectedValue(ptu, '0')}  checked />
-                            <label class="radio-label inline-block p-3 border border-gray-500 rounded-md cursor-pointer hover:bg-blue-100 hover:border-blue-500" for={`no-bid-${ptu}`}></label>
+                            <label class="radio-label inline-block p-2 transition-all  bg-black/5 border border-transparent rounded-md cursor-pointer hover:bg-black/30 hover:border-black/30" for={`no-bid-${ptu}`}>
+                            <div class="h-2 w-2 bg-black/30 rounded-full"></div>
+                            </label>
                         </div>
                         <div>
                             <input class="hidden radio" type="radio" id={`charge-${ptu}`} name={`select-${ptu}`} value="1" bind:group={selectedValues[ptu+1]}  on:change={() => updateSelectedValue(ptu, '1')}  />
-                            <label class="radio-label inline-block p-3 border border-gray-500 rounded-md cursor-pointer hover:bg-blue-100 hover:border-blue-500" for={`charge-${ptu}`}></label>
+                            <label class="radio-label inline-block p-2 transition-all bg-black/5 border border-transparent rounded-md cursor-pointer hover:bg-black/30 hover:border-black/30" for={`charge-${ptu}`}>
+                                <div class="h-2 w-2 bg-black/30 rounded-full"></div>
+                            </label>
                         </div>
                         <div>
                             <input class="hidden radio" type="radio" id={`discharge-${ptu}`} name={`select-${ptu}`} value="2" bind:group={selectedValues[ptu+1]} on:change={() => updateSelectedValue(ptu, '2')}  />
-                            <label class="radio-label inline-block p-3 border border-gray-500 rounded-md cursor-pointer hover:bg-blue-100 hover:border-blue-500" for={`discharge-${ptu}`}></label>
+                            <label class="radio-label inline-block p-2 transition-all bg-black/5 border border-transparent rounded-md cursor-pointer hover:bg-black/30 hover:border-black/30" for={`discharge-${ptu}`}>
+                                <div class="h-2 w-2 bg-black/30 rounded-full"></div>
+                            </label>
                         </div>
                         <div>
                             <input class="hidden radio" type="radio" id={`fcrn-${ptu}`} name={`select-${ptu}`} value="3" bind:group={selectedValues[ptu+1]} on:change={() => updateSelectedValue(ptu, '3')}  />
-                            <label class="radio-label inline-block p-3 border border-gray-500 rounded-md cursor-pointer hover:bg-blue-100 hover:border-blue-500" for={`fcrn-${ptu}`}></label>
+                            <label class="radio-label inline-block p-2 transition-all bg-black/5 border border-transparent  rounded-md cursor-pointer hover:bg-black/30 hover:border-black/30" for={`fcrn-${ptu}`}>
+                                <div class="h-2 w-2 bg-black/30 rounded-full"></div>
+                            </label>
                         </div>
                     </fieldset>
                 </div>
-
-
 
             {/each}
             </div>
@@ -386,9 +392,11 @@
 <style>
 
     .radio:checked + .radio-label {
-        background-color: #e5e5e5; /* Background of selected button */
-        border-color: #a3a3a3; /* Border color of selected button */
+        background-color: rgba(0,0,0,0.6); /* Background of selected button */
+        /* background-color: #2a56ab; */
+        border-color: transparent; /* Border color of selected button */
         border-radius: 6px;
+        transition: cubic-bezier(1);
     }
 </style>
 
