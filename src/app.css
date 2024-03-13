@@ -25,3 +25,8 @@
         animation-delay: 4s;
     }
 }
+
+body {
+    background-color: #e2e8f0;
+    background-image: url("./lib/assets/noise-light.png");
+}

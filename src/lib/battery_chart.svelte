@@ -15,7 +15,7 @@ export let chargeState = [];
 let option = {
     grid: {
   left: 40,
-  top: 60,
+  top: 40,
   right: 5,
   bottom: 40
 },

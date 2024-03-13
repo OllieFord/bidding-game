@@ -300,71 +300,81 @@
 
         </div>
         
-
-        <div class=" overflow-x-scroll sm:overflow-auto flex flex-col flex-grow h-vh bg-white p-4 rounded-lg shadow-lg">
-            <div class="h-64 w-full">
-                <Chart />
-            </div>
-            <div class="h-52 pb-6 ">
-            <Battery_chart {chargeState}></Battery_chart>
+        <div class="flex flex-col flex-grow" >
+            <div class=" overflow-x-scroll sm:overflow-auto flex flex-col flex-grow h-vh bg-white p-4 rounded-lg shadow-lg pb-2">
+                <div class="h-64 w-full">
+                    <Chart />
+                </div>
             </div>
 
-        <div class="mb-2 ">
-            <div class="font-bold uppercase tracking-tight">Bidding Controls</div>
-            <div class="font-medium text-sm text-gray-600 tracking-tight">Click on the squares to make a bid</div>
-        </div>
-        <div class="flex flex-row flex-grow justify-between pl-[2.9rem] pr-6 col-span-4">
+            <div class=" overflow-x-scroll sm:overflow-auto flex flex-col flex-grow h-vh bg-white p-4 rounded-lg shadow-lg mt-4 pb-2">
+                <div class="h-44">
+                    <Battery_chart {chargeState}></Battery_chart>
+                </div>
+                
+
+            </div>
+
             
 
-        {#each ptus as ptu, index}
+        <div class="flex flex-col flex-grow bg-white p-4 rounded-lg shadow-lg mt-4">
+            <div class="mb-2 ">
+                <div class="font-bold uppercase tracking-tight">Bidding Controls</div>
+                <div class="font-medium text-sm text-gray-600 tracking-tight">Click on the squares to make a bid</div>
+            </div>
+            <div class="flex flex-row flex-grow justify-between pl-[2.9rem] pr-6 col-span-4">
+                
 
-            <div class=" border-gray-300 rounded-md text-center flex flex-col text-xs gap-1 ">
-                <div class="mb-2 font-medium tracking-tight ">
-                    {#if ptu < 10}
-                        0{ptu}
-                    {:else}
-                        {ptu}
-                    {/if}
+            {#each ptus as ptu, index}
+
+                <div class=" border-gray-300 rounded-md text-center flex flex-col text-xs gap-1 ">
+                    <div class="mb-2 font-medium tracking-tight ">
+                        {#if ptu < 10}
+                            0{ptu}
+                        {:else}
+                            {ptu}
+                        {/if}
+                    </div>
+
+                    <fieldset>
+                        {#if estimatedRevenue.value[index].toFixed(0) < 0}
+                        <div class="font-bold pb-1 text-red-600">
+                            {estimatedRevenue.value[index].toFixed(0)}
+                        </div>
+                        {:else if estimatedRevenue.value[index].toFixed(0) > 0}
+                        <div class="font-bold pb-1 text-emerald-600">
+                            {estimatedRevenue.value[index].toFixed(0)}
+                        </div>
+                        {:else}
+                        <div class="font-bold pb-1">
+                            {estimatedRevenue.value[index].toFixed(0)}
+                        </div>
+
+                        {/if}
+
+                        <div>
+                            <input class="hidden radio" type="radio" id={`no-bid-${ptu}`} name={`select-${ptu}`} value="0" bind:group={selectedValues[ptu+1]}  on:change={() => updateSelectedValue(ptu, '0')}  checked />
+                            <label class="radio-label inline-block p-3 border border-gray-500 rounded-md cursor-pointer hover:bg-blue-100 hover:border-blue-500" for={`no-bid-${ptu}`}></label>
+                        </div>
+                        <div>
+                            <input class="hidden radio" type="radio" id={`charge-${ptu}`} name={`select-${ptu}`} value="1" bind:group={selectedValues[ptu+1]}  on:change={() => updateSelectedValue(ptu, '1')}  />
+                            <label class="radio-label inline-block p-3 border border-gray-500 rounded-md cursor-pointer hover:bg-blue-100 hover:border-blue-500" for={`charge-${ptu}`}></label>
+                        </div>
+                        <div>
+                            <input class="hidden radio" type="radio" id={`discharge-${ptu}`} name={`select-${ptu}`} value="2" bind:group={selectedValues[ptu+1]} on:change={() => updateSelectedValue(ptu, '2')}  />
+                            <label class="radio-label inline-block p-3 border border-gray-500 rounded-md cursor-pointer hover:bg-blue-100 hover:border-blue-500" for={`discharge-${ptu}`}></label>
+                        </div>
+                        <div>
+                            <input class="hidden radio" type="radio" id={`fcrn-${ptu}`} name={`select-${ptu}`} value="3" bind:group={selectedValues[ptu+1]} on:change={() => updateSelectedValue(ptu, '3')}  />
+                            <label class="radio-label inline-block p-3 border border-gray-500 rounded-md cursor-pointer hover:bg-blue-100 hover:border-blue-500" for={`fcrn-${ptu}`}></label>
+                        </div>
+                    </fieldset>
                 </div>
 
-                <fieldset>
-                    {#if estimatedRevenue.value[index].toFixed(0) < 0}
-                    <div class="font-bold pb-1 text-red-600">
-                        {estimatedRevenue.value[index].toFixed(0)}
-                    </div>
-                    {:else if estimatedRevenue.value[index].toFixed(0) > 0}
-                    <div class="font-bold pb-1 text-emerald-600">
-                        {estimatedRevenue.value[index].toFixed(0)}
-                    </div>
-                    {:else}
-                    <div class="font-bold pb-1">
-                        {estimatedRevenue.value[index].toFixed(0)}
-                    </div>
 
-                    {/if}
 
-                    <div>
-                        <input class="hidden radio" type="radio" id={`no-bid-${ptu}`} name={`select-${ptu}`} value="0" bind:group={selectedValues[ptu+1]}  on:change={() => updateSelectedValue(ptu, '0')}  checked />
-                        <label class="radio-label inline-block p-3 border border-gray-500 rounded-md cursor-pointer hover:bg-blue-100 hover:border-blue-500" for={`no-bid-${ptu}`}></label>
-                    </div>
-                    <div>
-                        <input class="hidden radio" type="radio" id={`charge-${ptu}`} name={`select-${ptu}`} value="1" bind:group={selectedValues[ptu+1]}  on:change={() => updateSelectedValue(ptu, '1')}  />
-                        <label class="radio-label inline-block p-3 border border-gray-500 rounded-md cursor-pointer hover:bg-blue-100 hover:border-blue-500" for={`charge-${ptu}`}></label>
-                    </div>
-                    <div>
-                        <input class="hidden radio" type="radio" id={`discharge-${ptu}`} name={`select-${ptu}`} value="2" bind:group={selectedValues[ptu+1]} on:change={() => updateSelectedValue(ptu, '2')}  />
-                        <label class="radio-label inline-block p-3 border border-gray-500 rounded-md cursor-pointer hover:bg-blue-100 hover:border-blue-500" for={`discharge-${ptu}`}></label>
-                    </div>
-                    <div>
-                        <input class="hidden radio" type="radio" id={`fcrn-${ptu}`} name={`select-${ptu}`} value="3" bind:group={selectedValues[ptu+1]} on:change={() => updateSelectedValue(ptu, '3')}  />
-                        <label class="radio-label inline-block p-3 border border-gray-500 rounded-md cursor-pointer hover:bg-blue-100 hover:border-blue-500" for={`fcrn-${ptu}`}></label>
-                    </div>
-                </fieldset>
+            {/each}
             </div>
-
-
-
-        {/each}
         </div>
         </div>
     </div>
