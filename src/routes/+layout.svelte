@@ -3,7 +3,7 @@
 </script>
 
 
-<nav class=" flex flex-row p-4 uppercase font-semibold tracking-wide bg-white rounded-lg mb-4 items-center shadow-sm">
+<nav class=" flex flex-row p-4 uppercase font-semibold tracking-wide bg-[rgba(0,0,0,0.04)] rounded-lg mb-4 items-center">
     <div class="mr-auto font-bold text-lg">
         Bidding Game
     </div>

@@ -251,7 +251,7 @@
 
     <div class="flex flex-col sm:flex-row w-full flex-grow h-vh">
         <div class="flex flex-col pr-4 min-h-[488px] h-auto space-y-4">
-            <div class="px-4 bg-white rounded-lg shadow-sm py-4">
+            <div class="px-4 bg-white rounded-lg shadow-lg py-4">
                 <h2 class="text-xl mb-1 leading-5 font-normal ">Estimated Revenue</h2>
                 
                 <div class="flex flex-row w-full justify-between items-center">
@@ -259,21 +259,21 @@
                 </div>
             </div>
 
-            <div class="  bg-white rounded-lg shadow-sm overflow-hidden">
-                <div class="w-full h-full relative">
+            <div class="  bg-white rounded-lg shadow-lg ">
+                <div class="w-full h-full relative rounded-lg overflow-hidden">
                     <Timer/>
                 </div>
                 
             </div>
 
             <div class="flex flex-row gap-4 rounded-lg">
-                <button class="px-4 py-3 z-50 w-full bg-white border border-gray-300 hover:scale-105 hover:text-neurtal-800 transition-all rounded-lg shadow-sm text-neurtal-800 font-medium tracking-wide" onclick="modal.showModal()">RULES</button>
-                <button class="px-4 py-3 z-50 w-full bg-red-600 hover:scale-105  rounded-lg shadow-md transition-all text-white font-bold tracking-wide" on:click={reset}>RESET</button>
+                <button class="px-4 py-3 z-50 w-full  bg-white border border-gray-300 hover:scale-105 hover:text-neurtal-800 transition-all rounded-lg shadow-lg text-neurtal-800 font-medium tracking-wide" onclick="modal.showModal()">RULES</button>
+                <button class="px-4 py-3 z-50 w-full bg-red-600 hover:scale-105  rounded-lg shadow-lg transition-all text-white font-bold tracking-wide" on:click={reset}>RESET</button>
             </div>
 
 
-            <div class="rounded-lg ">
-                <button class="px-4 py-3 bg-blue-700 hover:scale-105  rounded-lg shadow-md text-white font-normal transition-all tracking-wide" on:click={() => (showModal = true)}> Submit to Leaderboard </button>
+            <div class="rounded-lg shadow-lg">
+                <button class="px-4 py-3 bg-blue-700 hover:scale-105  rounded-lg shadow-lg text-white font-normal transition-all tracking-wide" on:click={() => (showModal = true)}> Submit to Leaderboard </button>
             </div>
 
             <div class="hidden sm:block !mt-auto text-sm font-bold z-50 pb-4 -mr-2">
@@ -301,7 +301,7 @@
         </div>
         
 
-        <div class=" overflow-x-scroll sm:overflow-auto flex flex-col flex-grow h-vh bg-white p-4 rounded-lg shadow-sm">
+        <div class=" overflow-x-scroll sm:overflow-auto flex flex-col flex-grow h-vh bg-white p-4 rounded-lg shadow-lg">
             <div class="h-64 w-full">
                 <Chart />
             </div>

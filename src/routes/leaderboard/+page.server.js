@@ -7,7 +7,7 @@ async function seed() {
     CREATE TABLE IF NOT EXISTS leaderboard (
       id SERIAL PRIMARY KEY,
       name VARCHAR(255) NOT NULL,
-      score INTEGER NOT NULL,
+      score FLOAT NOT NULL,
       "createdAt" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
     );
   `;
@@ -17,16 +17,9 @@ async function seed() {
     const leaderboard = await Promise.all([
         sql`
           INSERT INTO leaderboard (name, score)
-          VALUES ('Guillermo Rauch', 900);
+          VALUES ('Ollie', 300.0);
       `,
-        sql`
-          INSERT INTO leaderboard (name, score)
-          VALUES ('Ollie', 300);
-      `,
-        sql`
-          INSERT INTO leaderboard (name, score)
-          VALUES ('Rik', 1002);
-      `
+    
     ])
 
     console.log(`Seeded ${leaderboard.length} entries`)
@@ -39,10 +32,6 @@ async function seed() {
 
 
 export async function load() {
-
-    const pool = createPool({
-        connectionString: POSTGRES_URL
-    })
 
     try {
         const { rows: leaderboard } = await sql`SELECT * FROM leaderboard ORDER BY score DESC`;
