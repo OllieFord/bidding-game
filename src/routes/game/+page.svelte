@@ -11,7 +11,7 @@
 
 
    const startingValue = 0
-   const fineMultiplication = 3
+   const fineMultiplication = 1
 
 
     let ptus = Array(24).fill().map((_, i) => i); // Example PTUs
@@ -65,8 +65,11 @@
 
         let currentChargeState = getItem(chargeState, index-1)
         let currentAction = selectedValues[index]
+        let priceIndex = 0
 
-        let priceIndex = index - 1
+      
+        priceIndex = index -1
+        
 
         //  When we do nothing
         if (state == "0") {
@@ -99,7 +102,7 @@
                 estimatedRevenue.upper[priceIndex] = 0
                 estimatedRevenue.lower[priceIndex] = 0
                 estimatedRevenue.value[priceIndex] = 0
-                // selectedValues[index] = "0"
+                
                 return currentChargeState
             } else {
                 estimatedRevenue.upper[priceIndex]  = (data[priceIndex].spot_price)
@@ -112,22 +115,19 @@
 
         // When we want to sell to FCRN
         if (state == "3") {
-            if (currentChargeState <= 0) {
-                estimatedRevenue.upper[priceIndex]  = -(data[priceIndex].fcr_n_price_upper) * fineMultiplication
-                estimatedRevenue.lower[priceIndex]  = -(data[priceIndex].fcr_n_price_lower) * fineMultiplication
-                estimatedRevenue.value[priceIndex]  = ((estimatedRevenue.upper[index] + estimatedRevenue.lower[priceIndex]) / 2)
-                return currentChargeState
-            } else if (currentChargeState > 50) {
-                estimatedRevenue.upper[priceIndex]  = -(data[priceIndex].fcr_n_price_upper) * fineMultiplication
-                estimatedRevenue.lower[priceIndex]  = -(data[priceIndex].fcr_n_price_lower) * fineMultiplication
-                estimatedRevenue.value[priceIndex]  = ((estimatedRevenue.upper[priceIndex] + estimatedRevenue.lower[priceIndex]) / 2)
-                return currentChargeState
+            if (currentChargeState <= 0 || currentChargeState > 50) {
+                // Apply negation for both upper and lower bounds
+                estimatedRevenue.upper[priceIndex] = -(data[priceIndex].fcr_n_price_upper) * fineMultiplication;
+                estimatedRevenue.lower[priceIndex] = -(data[priceIndex].fcr_n_price_lower) * fineMultiplication;
+                // Fix the inconsistent index use
+                estimatedRevenue.value[priceIndex] = ((estimatedRevenue.upper[priceIndex] + estimatedRevenue.lower[priceIndex]) / 2);
+                return currentChargeState;
             } else {
-                estimatedRevenue.upper[priceIndex]  = (data[priceIndex].fcr_n_price_upper)
-                estimatedRevenue.lower[priceIndex]  = (data[priceIndex].fcr_n_price_lower) 
-                estimatedRevenue.value[priceIndex]  = ((estimatedRevenue.upper[priceIndex] + estimatedRevenue.lower[priceIndex]) / 2)
-                return currentChargeState
-
+                // No negation applied
+                estimatedRevenue.upper[priceIndex] = data[priceIndex].fcr_n_price_upper;
+                estimatedRevenue.lower[priceIndex] = data[priceIndex].fcr_n_price_lower;
+                estimatedRevenue.value[priceIndex] = ((estimatedRevenue.upper[priceIndex] + estimatedRevenue.lower[priceIndex]) / 2);
+                return currentChargeState;
             }
         }
 
@@ -145,7 +145,7 @@
 
         console.log(chargeState)
         console.log(selectedValues)
-        console.log(estimatedRevenue.value)
+        console.log(estimatedRevenue)
     }
 
 
