@@ -9,14 +9,18 @@
 
 	let showModal = false;
 
+    let numberOfBids = 0
+
 
    const startingValue = 0
-   const fineMultiplication = 1
+   const fineMultiplication = 3
 
 
     let ptus = Array(24).fill().map((_, i) => i); // Example PTUs
     let selectedValues = Array(ptus.length+1).fill("0"); // Default to '0' for all
     let chargeState = Array(ptus.length+1).fill(startingValue)
+
+    let values = data
 
     let estimatedRevenue = {
         upper: Array(ptus.length).fill(0),
@@ -33,8 +37,6 @@
         }
         chargeState = Array(ptus.length+1).fill(startingValue)
         selectedValues = Array(ptus.length+1).fill("0");
-
-
     }
 
     function sum(array) {
@@ -50,15 +52,6 @@
         }
         return array[index];
         }
-
-    function toggleOptionByValue(selectId, value) {
-        const selectElement = document.getElementById(selectId);
-        const optionToToggle = selectElement.querySelector(`option[value="${value}"]`);
-        if (optionToToggle) {
-            // Toggle the disabled state
-            optionToToggle.disabled = !optionToToggle.disabled;
-        }
-    }
 
 
     function calculateChargeState(index, state) {
@@ -119,7 +112,6 @@
                 // Apply negation for both upper and lower bounds
                 estimatedRevenue.upper[priceIndex] = -(data[priceIndex].fcr_n_price_upper) * fineMultiplication;
                 estimatedRevenue.lower[priceIndex] = -(data[priceIndex].fcr_n_price_lower) * fineMultiplication;
-                // Fix the inconsistent index use
                 estimatedRevenue.value[priceIndex] = ((estimatedRevenue.upper[priceIndex] + estimatedRevenue.lower[priceIndex]) / 2);
                 return currentChargeState;
             } else {
@@ -137,15 +129,10 @@
     // Function to update a specific PTU's selected value
     function updateSelectedValue(index, value) {
         selectedValues[index+1] = value;
-
         
         for (let i = 1; i < chargeState.length; i++) {
             chargeState[i] = calculateChargeState(i, selectedValues[i])
             }
-
-        console.log(chargeState)
-        console.log(selectedValues)
-        console.log(estimatedRevenue)
     }
 
 
@@ -209,7 +196,7 @@
 
 <Modal bind:showModal>
 	<h2 slot="header" class="font-medium text-xl">
-		Sumbit score to leaderboard
+		Submit Bids
 	</h2>
 
     <div class="flex flex-row px-8 pt-8 pb-4 justify-center items-center">
@@ -226,9 +213,22 @@
             Name
             <input name="name" value={form?.name ?? ''} type="text" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5">
         </label>
+        <label class="block mb-2 text-sm font-medium text-gray-900">
+            How many distinct market programs can NOC submit bids to per day, assuming the ability to bid on everything?
+            <div class="flex flex-row w-full justify-center items-center text-xl font-medium p-4 pb-0">
+                {numberOfBids}
+            </div>
+            <div class="relative mb-8 py-2 mx-8">
+                <input id="labels-range-input" name="numberOfBids" type="range" bind:value={numberOfBids} min="0" max="100" step=1 class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer ">
+                <span class="text-sm text-gray-500  absolute start-0 -bottom-6">0</span>
+                <span class="text-sm text-gray-500  absolute start-1/2 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">50</span>
+                <span class="text-sm text-gray-500  absolute end-0 -bottom-6">100</span>
+            </div>
+            <!-- <input name="name" value={form?.name ?? ''} type="text" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5"> -->
+        </label>
         <label style="display: none;">
             Score
-            <input name="score" type="text" value={Math.round(sum(estimatedRevenue.value).toFixed(2))}>
+            <input name="selectedValues[]" type="text" value={JSON.stringify(selectedValues)}>
         </label>
         <div class="flex flex-row justify-end">
             <button class="text-white bg-black hover:scale-105 focus:ring-4 transition-all focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" formaction="?/addScore">Submit</button>
@@ -272,8 +272,8 @@
             </div>
 
 
-            <div class="rounded-lg shadow-lg">
-                <button class="px-4 py-3 bg-blue-700 hover:scale-105  rounded-lg shadow-lg text-white font-normal transition-all tracking-wide" on:click={() => (showModal = true)}> Submit to Leaderboard </button>
+            <div class="rounded-lg">
+                <button class="px-4 py-3 bg-blue-700 hover:scale-105  rounded-lg shadow-lg text-white font-normal transition-all tracking-wide" on:click={() => (showModal = true)}> Submit Bids </button>
             </div>
 
             <div class="hidden sm:block !mt-auto text-sm font-bold z-50 pb-4 -mr-2">
