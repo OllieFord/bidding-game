@@ -18,7 +18,7 @@
   </div>
         </div>
            
-        <h1 class=" text-3xl sm:text-2xl font-black pb-1 pt-8 z-10 uppercase">Energy bidding Game</h1>
+        <h1 class=" text-3xl sm:text-2xl font-black pb-1 pt-8 z-10 uppercase">Value Stacking Game</h1>
         <p class="text-md sm:text-sm font-medium uppercase">Optimizing for a cleaner future</p>
 
         <div class="flex flex-row justify-items-end justify-between z-10 mt-10 relative">
