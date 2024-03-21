@@ -1,66 +1,69 @@
 <script>
 
-  /** @type {import('./$types').PageData} */
-  export let data;
+
+/** @type {import('./$types').PageData} */
+export let data;
+
+// $: ({ leaderboard } = data);
 
 
-let groupsArray = [];
+// let groupsArray = [];
 
-$: if (data.leaderboard) {
-    groupsArray = transformData(data.leaderboard);
-  }
+// $: if (data.leaderboard) {
+//     groupsArray = transformData(data.leaderboard);
+//   }
 
-// Create a temporary object to hold groups
+// // Create a temporary object to hold groups
 
-// // Group entries by group_number
-// data.leaderboard.forEach(entry => {
-//     if (!tempGroups[entry.group_number]) {
-//         tempGroups[entry.group_number] = [];
+// // // Group entries by group_number
+// // data.leaderboard.forEach(entry => {
+// //     if (!tempGroups[entry.group_number]) {
+// //         tempGroups[entry.group_number] = [];
+// //     }
+// //     tempGroups[entry.group_number].push(entry);
+// // });
+
+// // // Sort each group by score
+// // for (const groupNumber in tempGroups) {
+// //     tempGroups[groupNumber].sort((a, b) => b.score - a.score);
+// // }
+
+// // // Transform the groups object into an iterable array of group objects
+// // let groupsArray = Object.keys(tempGroups).map(groupNumber => ({
+// //     group_number: parseInt(groupNumber, 10),
+// //     members: tempGroups[groupNumber],
+// // }));
+
+
+// // Transforms the leaderboard data into a grouped and sorted structure
+//   function transformData(leaderboard) {
+//     let tempGroups = {};
+
+//     // Group entries by group_number
+//     leaderboard.forEach(entry => {
+//         if (!tempGroups[entry.group_number]) {
+//             tempGroups[entry.group_number] = [];
+//         }
+//         tempGroups[entry.group_number].push(entry);
+//     });
+
+//     // Sort each group by score
+//     for (const groupNumber in tempGroups) {
+//         tempGroups[groupNumber].sort((a, b) => b.score - a.score);
 //     }
-//     tempGroups[entry.group_number].push(entry);
-// });
 
-// // Sort each group by score
-// for (const groupNumber in tempGroups) {
-//     tempGroups[groupNumber].sort((a, b) => b.score - a.score);
-// }
+//     // Transform into an array of group objects
+//     return Object.keys(tempGroups).map(groupNumber => ({
+//         group_number: parseInt(groupNumber, 10),
+//         members: tempGroups[groupNumber],
+//     }));
+//   }
 
-// // Transform the groups object into an iterable array of group objects
-// let groupsArray = Object.keys(tempGroups).map(groupNumber => ({
-//     group_number: parseInt(groupNumber, 10),
-//     members: tempGroups[groupNumber],
-// }));
-
-
-// Transforms the leaderboard data into a grouped and sorted structure
-  function transformData(leaderboard) {
-    let tempGroups = {};
-
-    // Group entries by group_number
-    leaderboard.forEach(entry => {
-        if (!tempGroups[entry.group_number]) {
-            tempGroups[entry.group_number] = [];
-        }
-        tempGroups[entry.group_number].push(entry);
-    });
-
-    // Sort each group by score
-    for (const groupNumber in tempGroups) {
-        tempGroups[groupNumber].sort((a, b) => b.score - a.score);
-    }
-
-    // Transform into an array of group objects
-    return Object.keys(tempGroups).map(groupNumber => ({
-        group_number: parseInt(groupNumber, 10),
-        members: tempGroups[groupNumber],
-    }));
-  }
-
-  // Manual update (if needed)
-  function update() {
-    // Manually trigger data transformation, for example, after updating the data
-    groupsArray = transformData(data.leaderboard);
-  }
+//   // Manual update (if needed)
+//   function update() {
+//     // Manually trigger data transformation, for example, after updating the data
+//     groupsArray = transformData(data.leaderboard);
+//   }
 
 
 

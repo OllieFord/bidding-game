@@ -40,11 +40,11 @@ export const actions = {
         const name = response.get('name').toLowerCase();
         const group = response.get('group');
         const selectedValues = JSON.parse(response.get('selectedValues[]'));
-        const numberOfBids = response.get('numberOfBids');
+        // const numberOfBids = response.get('numberOfBids');
 
 
         let score = calculateScore(selectedValues, data)
-        let tiebreaker = calculateTieBreaker(correctAnswer, numberOfBids)
+        // let tiebreaker = calculateTieBreaker(correctAnswer, numberOfBids)
 
         let finalScore = Math.round((score).toFixed(2))
 
