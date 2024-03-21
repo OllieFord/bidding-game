@@ -26,8 +26,6 @@ const groupsArray = Object.keys(tempGroups).map(groupNumber => ({
 }));
 
 
-console.log(groupsArray)
-
 
 </script>
 <div class="flex flex-col justify-center items-center">
