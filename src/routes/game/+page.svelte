@@ -208,10 +208,14 @@
         Your Score
     </div>
     <form class="py-4 px-2 space-y-4" method="POST" use:enhance action="?/addScore">
-        {#if form?.missing}<p class="error text-red-500">Please enter your name.</p>{/if}
+        {#if form?.missing}<p class="error text-red-500">Please fill in the missing values.</p>{/if}
         <label class="block mb-2 text-sm font-medium text-gray-900">
             Name
             <input name="name" value={form?.name ?? ''} type="text" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5">
+        </label>
+        <label class="block mb-2 text-sm font-medium text-gray-900">
+            Group
+            <input type="number" min=1 step=1 max=2 name="group" value={form?.group ?? ''}  class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5">
         </label>
         <label class="block mb-2 text-sm font-medium text-gray-900">
             How many distinct market programs can NOC submit bids to per day, assuming the ability to bid on everything?

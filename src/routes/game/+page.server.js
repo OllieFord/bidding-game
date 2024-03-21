@@ -25,10 +25,10 @@ function calculateTieBreaker(rightAnswer, teamAnswer) {
 
 
 
-async function addEntry(name, score) {
+async function addEntry(name, score,group) {
     await sql`
-    INSERT INTO leaderboard (name, score)
-    VALUES (${name}, ${score});
+    INSERT INTO leaderboard (name, score, group_number)
+    VALUES (${name}, ${score}, ${group});
   `;
 }
 
@@ -37,7 +37,8 @@ export const actions = {
 
         const response = await request.formData();
 
-        const name = response.get('name');
+        const name = response.get('name').toLowerCase();
+        const group = response.get('group');
         const selectedValues = JSON.parse(response.get('selectedValues[]'));
         const numberOfBids = response.get('numberOfBids');
 
@@ -55,7 +56,14 @@ export const actions = {
             })
         }
 
-        await addEntry(name, finalScore)
+        if (!group) {
+            return fail(400, {
+                group,
+                missing: true
+            })
+        }
+
+        await addEntry(name, finalScore, group)
         redirect(303, '/leaderboard');
 
     }

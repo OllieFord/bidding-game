@@ -2,6 +2,18 @@ import { createPool, sql } from "@vercel/postgres";
 import { POSTGRES_URL } from "$env/static/private";
 
 
+let leaderboardQuery = sql`
+
+WITH RankedScores AS (
+    SELECT *, ROW_NUMBER() OVER (PARTITION BY name ORDER BY score DESC, id) AS rank
+    FROM leaderboard
+)
+SELECT *
+FROM RankedScores
+WHERE rank = 1
+ORDER BY score DESC;`
+
+
 async function seed() {
     const createTable = await sql`
     CREATE TABLE IF NOT EXISTS leaderboard (
@@ -34,7 +46,7 @@ async function seed() {
 export async function load() {
 
     try {
-        const { rows: leaderboard } = await sql`SELECT * FROM leaderboard ORDER BY score DESC`;
+        const { rows: leaderboard } = await leaderboardQuery;
         return {
             leaderboard: leaderboard,
         }
@@ -45,7 +57,7 @@ export async function load() {
             )
             // Table is not created yet
             await seed()
-            const { rows: leaderboard } = await sql`SELECT * FROM leaderboard ORDER BY score DESC`;
+            const { rows: leaderboard } = await leaderboardQuery;
             return {
                 leaderboard: leaderboard,
             }
