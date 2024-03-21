@@ -46,7 +46,7 @@ export const actions = {
         let score = calculateScore(selectedValues, data)
         let tiebreaker = calculateTieBreaker(correctAnswer, numberOfBids)
 
-        let finalScore = Math.round((score + tiebreaker).toFixed(2))
+        let finalScore = Math.round((score).toFixed(2))
 
 
         if (!name) {

@@ -217,19 +217,7 @@
             Group
             <input type="number" min=1 step=1 max=2 name="group" value={form?.group ?? ''}  class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5">
         </label>
-        <label class="block mb-2 text-sm font-medium text-gray-900">
-            How many distinct market programs can NOC submit bids to per day, assuming the ability to bid on everything?
-            <div class="flex flex-row w-full justify-center items-center text-xl font-medium p-4 pb-0">
-                {numberOfBids}
-            </div>
-            <div class="relative mb-8 py-2 mx-8">
-                <input id="labels-range-input" name="numberOfBids" type="range" bind:value={numberOfBids} min="0" max="100" step=1 class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer ">
-                <span class="text-sm text-gray-500  absolute start-0 -bottom-6">0</span>
-                <span class="text-sm text-gray-500  absolute start-1/2 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">50</span>
-                <span class="text-sm text-gray-500  absolute end-0 -bottom-6">100</span>
-            </div>
-            <!-- <input name="name" value={form?.name ?? ''} type="text" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5"> -->
-        </label>
+        
         <label style="display: none;">
             Score
             <input name="selectedValues[]" type="text" value={JSON.stringify(selectedValues)}>
