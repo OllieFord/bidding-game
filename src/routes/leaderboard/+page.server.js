@@ -46,7 +46,7 @@ async function seed() {
 export async function load() {
 
     try {
-        const { rows: leaderboard } = await leaderboardQuery;
+        const { rows: leaderboard } = await sql`SELECT * FROM leaderboard ORDER BY score DESC`;
         return {
             leaderboard: leaderboard,
         }
@@ -57,7 +57,7 @@ export async function load() {
             )
             // Table is not created yet
             await seed()
-            const { rows: leaderboard } = await leaderboardQuery;
+            const { rows: leaderboard } = await sql`SELECT * FROM leaderboard ORDER BY score DESC`;
             return {
                 leaderboard: leaderboard,
             }
