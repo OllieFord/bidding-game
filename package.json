@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "vite dev --host",
 		"build": "vite build",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
@@ -36,6 +36,8 @@
 		"@vercel/postgres": "^0.7.2",
 		"chart.js": "^4.4.2",
 		"echarts": "^5.5.0",
-		"svelte-chartjs": "^3.1.5"
+		"svelte-chartjs": "^3.1.5",
+		"swiper": "^11.2.10",
+		"tiny-slider": "^2.9.4"
 	}
 }

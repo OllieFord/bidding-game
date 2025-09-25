@@ -2,31 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
-    .font-outline-2 {
-        color: black;
-        color: #fff;
-        text-shadow: 0px 0px 4px #02061715;
-                
-    }
+	.font-outline-2 {
+		color: black;
+		color: #fff;
+		text-shadow: 0px 0px 4px #02061715;
+	}
 
-    .font-outline-4 {
-        -webkit-text-stroke: 4px black;
-    }
+	.font-outline-4 {
+		-webkit-text-stroke: 4px black;
+	}
 }
 
 @layer utilities {
-    .animation-delay-2000 {
-        animation-delay: 2s;
-    }
+	.animation-delay-2000 {
+		animation-delay: 2s;
+	}
 
-    .animation-delay-4000 {
-        animation-delay: 4s;
-    }
+	.animation-delay-4000 {
+		animation-delay: 4s;
+	}
 }
 
 body {
-    background-color: #e2e8f0;
-    background-image: url("./lib/assets/noise-light.png");
+	/*background-color: #e2e8f0;*/
+	background-image: url('./lib/assets/noise-light.png');
+}
+
+.light-border {
+	border: 1px solid rgba(33, 35, 39, 0.07);
+}
+
+.green {
+	color: #38cc65;
+}
+
+.red {
+	color: #f0383b;
+}
+
+.bg-red {
+	background-color: #f0383b;
+}
+
+.action-select-button {
+	background: repeating-linear-gradient(
+		-45deg,
+		rgb(238, 240, 241),
+		rgb(238, 240, 241) 1px,
+		rgb(255, 255, 255) 1px,
+		rgb(255, 255, 255) 5px
+	);
+	border: 1px solid rgb(194, 198, 203);
+}
+
+.action-select-button:hover {
+	border: 1px solid rgb(0, 111, 255) !important;
 }
