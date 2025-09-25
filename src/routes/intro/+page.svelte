@@ -45,6 +45,9 @@
 		<div class="swiper-slide">
 			<div class="slide-content">
 				<div class="slide-number">1/8</div>
+				<a href="/game" class="final-cta">
+					<strong>Start Game</strong>
+				</a>
 				<div class="slide-inner">
 					<h1 class="title">⚡ BESS Trading Game</h1>
 					<div class="battery-display">
@@ -280,9 +283,9 @@
 						</div>
 					</div>
 
-					<div class="final-cta">
-						<strong>Ready to play? Maximize your 24-hour revenue!</strong>
-					</div>
+					<a href="/game" class="final-cta">
+						<strong>Start Game</strong>
+					</a>
 				</div>
 			</div>
 		</div>
