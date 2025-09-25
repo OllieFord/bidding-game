@@ -45,7 +45,7 @@
 		<div class="swiper-slide">
 			<div class="slide-content">
 				<div class="slide-number">1/8</div>
-				<a href="/game" class="final-cta">
+				<a href="/game" class="slide-game-cta">
 					<strong>Start Game</strong>
 				</a>
 				<div class="slide-inner">
@@ -70,6 +70,9 @@
 		<div class="swiper-slide">
 			<div class="slide-content">
 				<div class="slide-number">2/8</div>
+				<a href="/game" class="slide-game-cta">
+					<strong>Start Game</strong>
+				</a>
 				<div class="slide-inner">
 					<h2 class="slide-title">🎯 Objective</h2>
 					<p class="slide-text">
@@ -97,6 +100,9 @@
 		<div class="swiper-slide">
 			<div class="slide-content">
 				<div class="slide-number">3/8</div>
+				<a href="/game" class="slide-game-cta">
+					<strong>Start Game</strong>
+				</a>
 				<div class="slide-inner">
 					<h2 class="slide-title">🔋 Your BESS Specifications</h2>
 					<div class="specs-grid">
@@ -125,6 +131,9 @@
 		<div class="swiper-slide">
 			<div class="slide-content">
 				<div class="slide-number">4/8</div>
+				<a href="/game" class="slide-game-cta">
+					<strong>Start Game</strong>
+				</a>
 				<div class="slide-inner">
 					<h2 class="slide-title">⚡ Your Four Options Each Hour</h2>
 					<div class="options-grid">
@@ -156,6 +165,9 @@
 		<div class="swiper-slide">
 			<div class="slide-content">
 				<div class="slide-number">5/8</div>
+				<a href="/game" class="slide-game-cta">
+					<strong>Start Game</strong>
+				</a>
 				<div class="slide-inner">
 					<h2 class="slide-title">📊 FCR-N (Frequency Regulation)</h2>
 					<p class="slide-text">Sell 1MW of frequency regulation service to the grid.</p>
@@ -192,6 +204,9 @@
 		<div class="swiper-slide">
 			<div class="slide-content">
 				<div class="slide-number">6/8</div>
+				<a href="/game" class="slide-game-cta">
+					<strong>Start Game</strong>
+				</a>
 				<div class="slide-inner">
 					<h2 class="slide-title">🔌 Charge</h2>
 					<p class="slide-text">Buy electricity from the grid and store it in your battery.</p>
@@ -225,6 +240,9 @@
 		<div class="swiper-slide">
 			<div class="slide-content">
 				<div class="slide-number">7/8</div>
+				<a href="/game" class="slide-game-cta">
+					<strong>Start Game</strong>
+				</a>
 				<div class="slide-inner">
 					<h2 class="slide-title">🔋 Discharge</h2>
 					<p class="slide-text">Sell stored electricity back to the grid.</p>
@@ -260,6 +278,9 @@
 		<div class="swiper-slide">
 			<div class="slide-content">
 				<div class="slide-number">8/8</div>
+				<a href="/game" class="slide-game-cta">
+					<strong>Start Game</strong>
+				</a>
 				<div class="slide-inner">
 					<h2 class="slide-title">🎯 Strategy Summary</h2>
 					<p class="slide-text">Now you understand the game! Here's your decision framework:</p>
@@ -328,6 +349,18 @@
 		color: #2563eb;
 		padding: 0.5rem 1rem;
 		border-radius: 9999px;
+		font-size: 0.875rem;
+		font-weight: 500;
+	}
+
+	.slide-game-cta {
+		position: absolute;
+		top: 1.5rem;
+		right: 1 rem;
+		background: black;
+		color: white;
+		padding: 0.5rem 1rem;
+		border-radius: 8px;
 		font-size: 0.875rem;
 		font-weight: 500;
 	}
